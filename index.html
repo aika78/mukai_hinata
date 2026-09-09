@@ -898,7 +898,46 @@ details[open] .toggle-icon {
         line-height: 1.6;
         color: #333333;
     }
-}    </style>
+}
+/* 1. 「Contact」タイトルと下の文章の間隔を狭くする */
+.contact-section h2, 
+#contact .section-title {
+    margin-bottom: 10px; /* ここを小さくすると間が狭くなります（元が30pxや50pxなどになっていれば調整してください） */
+}
+
+/* 2. 黒いボタンの中のメールアイコンを大きくして見やすくする */
+.contact-button a, 
+.email-btn, 
+#contact .btn {
+    /* アイコン（メールマーク）の文字サイズを大きくする */
+    font-size: 18px; /* お好みで 18px 〜 22px くらいに調整してください */
+}
+
+/* もしアイコンを特殊文字（✉など）ではなく、絵文字や別のフォントアイコンで入れている場合の調整例 */
+.contact-button i, 
+.email-icon {
+    font-size: 20px;
+    margin-right: 8px; /* アイコンとメールアドレスの間隔を少し空ける */
+}  
+/* 1. Contactセクション自体の上の余白を狭くする */
+#contact, .contact-section {
+    padding-top: 10px !important; /* 数値を小さくすると上の余白が狭くなります（例: 30px〜50pxでお好み調整） */
+    padding-bottom: 50px !important;
+}
+
+/* 2. 「Contact」タイトルと下の文章の間隔もスッキリさせる */
+#contact h2, .contact-section h2 {
+    margin-bottom: 10px;
+}
+
+/* 3. ボタンの中のメールマーク（✉）だけを大きくする */
+.contact-button a span, 
+.email-icon {
+    font-size: 20px; /* マークのサイズを大きくします */
+    margin-right: 8px; /* マークとメアドの間に少し隙間を空けます */
+    vertical-align: middle;
+}
+  </style>
 </head>
 <body>
 
@@ -1688,16 +1727,14 @@ details[open] .toggle-icon {
         <h2 class="contact-title">Contact</h2>
         
         <p class="contact-desc">
-            お仕事のご依頼・お問い合わせは、下記メールアドレス、またはInstagramのDMより お気軽にご連絡ください。
+            お仕事のご依頼・お問い合わせは、下記メールアドレスまでご連絡ください。
         </p>
-        <p class="contact-note">
-            ※所属事務所の担当マネージャーよりご返信させていただく場合がございます。
-        </p>
+
 
         <!-- メールアドレスボタン -->
         <div class="contact-btn-wrapper">
             <a href="mailto:mukai.hinata0708@gmail.com" class="contact-mail-btn">
-        ✉ mukai.hinata0708@gmail.com
+        mukai.hinata0708@gmail.com
     </a>
         </div>
 
