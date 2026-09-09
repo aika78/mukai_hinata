@@ -777,6 +777,95 @@
         margin-bottom: 12px;  /* スマホでの縦の隙間 */
     }
 }
+/* INFORMATIONセクション全体 */
+.info-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: #b5653d;
+}
+
+/* 各ニュース項目 */
+.info-item {
+    border-bottom: 1px solid #d2b48c;
+    transition: background-color 0.3s;
+}
+
+/* 常に見えているヘッダー部分 */
+.info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.info-header::-webkit-details-marker {
+    display: none;
+}
+
+.info-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 140px;
+}
+
+.info-date {
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+/* タグデザイン */
+.info-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background-color: #666;
+    color: #fff;
+}
+.info-tag-orange {
+    background-color: #c46210;
+}
+
+.info-title {
+    flex-grow: 1;
+    font-size: 15px;
+    color: #333;
+    margin: 0 20px;
+}
+
+/* 「＋」アイコンの回転アニメーション */
+.toggle-icon {
+    font-size: 18px;
+    color: #888;
+    transition: transform 0.3s ease;
+}
+
+details[open] .toggle-icon {
+    transform: rotate(45deg);
+}
+
+/* 開いたときの中身エリア */
+.info-content {
+    padding: 20px 20px 25px 20px;
+    background-color: #f7f9fa;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.info-content p {
+    margin-bottom: 8px;
+}
     </style>
 </head>
 <body>
@@ -786,7 +875,7 @@
         <div class="header-right">
             <ul class="nav-menu">
                 <li><a href="#top">TOP</a></li>
-                <li><a href="#info">INFORMATION</a></li>
+                <li><a href="#information">INFORMATION</a></li>
                 <li><a class="bioOpenTrigger">BIOGRAPHY</a></li>
                 <li><a href="#media">MEDIA</a></li>
 <li><a href="#photos">PHOTOS</a></li>
@@ -847,17 +936,299 @@
     </div>
 
     <!-- INFORMATION セクション -->
-    <section id="info">
-        <h2 class="section-title" data-bg="NEWS">INFORMATION</h2>
-        <ul class="news-list">
-            <li class="news-item">
-                <span class="news-date">2026.09.08</span>
-                <span class="news-tag">INFO</span>
-                <a href="#" class="news-title">公式ポートフォリオサイトを公開しました。</a>
-            </li>
-        </ul>
-    </section>
+<section id="information" class="info-section">
+    <h2 class="section-title">INFORMATION</h2>
 
+    <div class="info-list">
+
+        <!-- 2026.09: 親子でワクワク！ 学び発見フェスティバル！ -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.09</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">親子でワクワク！ 学び発見フェスティバル！／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 親子でワクワク！ 学び発見フェスティバル！／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 愛知県常滑市</p>
+            </div>
+        </details>
+
+        <!-- 2026.09: ちびっこジャンボリー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.09</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">ちびっこジャンボリー／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ちびっこジャンボリー／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 愛知県常滑市</p>
+            </div>
+        </details>
+
+        <!-- 2026.08: SAGAものスゴフェスタ12 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「SAGAものスゴフェスタ12 サイエンスファクトリー」出演</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> SAGAものスゴフェスタ12 サイエンスファクトリー</p>
+                <p><strong>【開催場所】</strong> SAGAアリーナ・佐賀市文化会館</p>
+            </div>
+        </details>
+
+        <!-- 2026.07: みなとみらいミネラルマルシェ -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.07</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「サイエンスパフォーマンスフェス２０２６ in みなとみらいミネラルマルシェ」</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> サイエンスパフォーマンスフェス２０２６ in みなとみらいミネラルマルシェ</p>
+                <p><strong>【企画】</strong> GENKI LABO</p>
+            </div>
+        </details>
+
+        <!-- 2026.03: ふくしま再エネファミリーラボ2026 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.03</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「ふくしま再エネファミリーラボ2026」出演</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ふくしま再エネファミリーラボ2026</p>
+                <p><strong>【主催】</strong> 福島県エネルギー課</p>
+            </div>
+        </details>
+
+        <!-- 2026.02: Ｑでんみらいスクール -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.02</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">Ｑでんみらいスクール★九電科学実験イベント／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> Ｑでんみらいスクール★九電科学実験イベント／サイエンスショー</p>
+                <p><strong>【主催】</strong> 九州電力</p>
+            </div>
+        </details>
+
+        <!-- 2025.12: カーボンニュートラルフェア in かごしま -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.12</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">カーボンニュートラルフェア in かごしま／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> カーボンニュートラルフェア in かごしま／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 鹿児島県鹿児島市</p>
+            </div>
+        </details>
+
+        <!-- 2025.11: かごしままるごとフェス -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.11</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">かごしままるごとフェス ワークショップ／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> かごしままるごとフェス ワークショップ／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 鹿児島県南さつま市</p>
+            </div>
+        </details>
+
+        <!-- 2025.10: ふくしま水素エネルギー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.10</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">ふくしま水素エネルギー サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ふくしま水素エネルギー サイエンスショー</p>
+            </div>
+        </details>
+
+        <!-- 2025.10: ボートレース若松 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.10</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">ボートレース若松 サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ボートレース若松 サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 福岡県北九州市</p>
+            </div>
+        </details>
+
+        <!-- 2025.10: 茜が丘複合施設イベント「みらフェス」 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.10</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">茜が丘複合施設イベント「みらフェス」サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 茜が丘複合施設イベント「みらフェス」サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 兵庫県西脇市</p>
+            </div>
+        </details>
+
+        <!-- 2025.09: 下水道の日フェスティバル2025 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.09</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">下水道の日フェスティバル2025 のりひなサイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 下水道の日フェスティバル2025 のりひなサイエンスショー</p>
+                <p><strong>【主催】</strong> 東京都虹の下水道館</p>
+            </div>
+        </details>
+
+        <!-- 2025.08: 夏休み自由研究ワークショップ（オリナス錦糸町） -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">夏休み自由研究ワークショップ｜オリジナルプラネタリウムを作ろう</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 夏休み自由研究ワークショップ｜オリジナルプラネタリウムを作ろう</p>
+                <p><strong>【主催】</strong> オリナス錦糸町</p>
+            </div>
+        </details>
+
+        <!-- 2025.08: 大阪・関西万博 EXPOサイエンスショー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">大阪・関西万博 EXPOサイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 大阪・関西万博 EXPOサイエンスショー</p>
+                <p><strong>【詳細】</strong> 大阪・関西万博 EXPOメッセ「WASSE」世界青少年発明工夫展2025 ダイキンブース内</p>
+            </div>
+        </details>
+
+        <!-- 2025.08: 夏休み 親子自由研究教室 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">夏休み 親子自由研究教室</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 夏休み 親子自由研究教室</p>
+                <p><strong>【主催】</strong> 九州電力</p>
+            </div>
+        </details>
+
+        <!-- 2025.07: おもしろ科学館2025 in ほろのべサイエンスキングダム -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.07</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">おもしろ科学館2025 in ほろのべサイエンスキングダム</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> おもしろ科学館2025 in ほろのべサイエンスキングダム</p>
+                <p><strong>【主催】</strong> 経済産業省北海道</p>
+            </div>
+        </details>
+
+        <!-- 2025.07: 再生可能エネルギーや地球温暖化がわかるサイエンスショー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.07</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">再生可能エネルギーや地球温暖化がわかるサイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 再生可能エネルギーや地球温暖化がわかるサイエンスショー</p>
+                <p><strong>【主催】</strong> 福島県環境創造センター</p>
+            </div>
+        </details>
+
+        <!-- 2025.03: ふくしま再エネファミリーラボ2025 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.03</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「ふくしま再エネファミリーラボ2025」出演</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ふくしま再エネファミリーラボ2025</p>
+                <p><strong>【主催】</strong> 福島県エネルギー課</p>
+            </div>
+        </details>
+    </div>
+</section>
     <!-- BIOGRAPHY 簡易セクション -->
     <section id="about">
         <h2 class="section-title" data-bg="BIOGRAPHY">BIOGRAPHY</h2>
