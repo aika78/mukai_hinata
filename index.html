@@ -388,7 +388,11 @@
             border-top: 1px solid #eee;
             background-color: #fafafa;
         }
-
+.biography-content, .bio-box {
+    padding: 20px; /* 周りにゆとりを持たせる */
+    line-height: 1.8; /* 行間を少し広げて読みやすくする */
+    word-break: break-all; /* 長い単語や学歴の途中で変なはみ出しを防ぐ */
+}
         /* --- スマホ画面（幅768px以下） --- */
         @media (max-width: 768px) {
             header {
@@ -824,9 +828,13 @@
             <li><a href="#contact" class="menu-link">CONTACT</a></li>
         </ul>
         <div class="header-sns">
-            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mukai_hinata0708" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@mukai_hinata0708" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+<!-- X（旧Twitter）のリンクを追加 -->
+<a href="https://x.com/mukai_hinata78" target="_blank" rel="noopener noreferrer">
+    <img src="x-icon.svg" alt="X"> <!-- ※アイコン画像の名前やsvgの形式は環境に合わせて調整してください -->
+</a>
+            <a href="https://www.youtube.com/channel/UCn8dMjVOoX-MXJ3B8LmyvQw" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
 
@@ -1458,26 +1466,36 @@
         bioModal.addEventListener('click', (e) => {
             if (e.target === bioModal) bioModal.classList.remove('active');
         });
+// MEDIA タブ切り替え（ブロック単位での制御）
+const tabBtns = document.querySelectorAll('.tab-btn');
+const genreBlocks = document.querySelectorAll('.works-genre-block');
 
-        // MEDIA タブ切り替え
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const workItems = document.querySelectorAll('.work-item');
+function switchGenre(targetGenre) {
+    genreBlocks.forEach(block => {
+        const blockGenre = block.getAttribute('data-genre');
+        if (targetGenre === 'ALL' || blockGenre === targetGenre) {
+            block.classList.add('is-show');
+        } else {
+            block.classList.remove('is-show');
+        }
+    });
+}
 
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const genre = btn.getAttribute('data-genre');
+// 最初にページを開いたときは「ALL」を表示
+switchGenre('ALL');
 
-                workItems.forEach(item => {
-                    if (genre === 'ALL' || item.getAttribute('data-genre') === genre) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
+// タブをクリックしたときの処理
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // ボタンのアクティブ状態を切り替え
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // クリックされたタブのジャンルを取得して表示を切り替え
+        const selectedGenre = btn.getAttribute('data-genre');
+        switchGenre(selectedGenre);
+    });
+});
     </script>
 <!-- いま書かれているHTMLのコンテンツやセクションなど -->
 
