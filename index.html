@@ -866,7 +866,39 @@ details[open] .toggle-icon {
 .info-content p {
     margin-bottom: 8px;
 }
-    </style>
+/* スマホ画面（幅768px以下）の場合のレイアウト調整 */
+@media screen and (max-width: 768px) {
+    /* プロフィール全体の余白を調整 */
+    .bio-profile-card, .bio-container, .bio-specs {
+        padding: 0 10px;
+    }
+
+    /* 各行（生年月日やサイズなど）を上下の縦並びにする */
+    .bio-row {
+        display: flex;
+        flex-direction: column; /* スマホではラベルと内容を縦に積む */
+        margin-bottom: 16px;
+        border-bottom: 1px dashed #e0d0c0; /* 薄い区切り線を入れるとさらに見やすいです */
+        padding-bottom: 12px;
+    }
+
+    /* 項目名（生年月日、サイズなど）のデザイン */
+    .bio-row dt {
+        font-size: 13px;
+        color: #b58d63; /* テーマに合わせた温かみのあるブラウン */
+        font-weight: bold;
+        margin-bottom: 4px;
+        letter-spacing: 0.05em;
+    }
+
+    /* 内容側のデザイン（サイズや改行位置を整える） */
+    .bio-row dd {
+        margin-left: 0; /* 左の余白をリセット */
+        font-size: 14px;
+        line-height: 1.6;
+        color: #333333;
+    }
+}    </style>
 </head>
 <body>
 
@@ -911,7 +943,7 @@ details[open] .toggle-icon {
         <div class="close-btn" id="menuCloseBtn">×</div>
         <ul class="nav-menu">
             <li><a href="#top" class="menu-link">TOP</a></li>
-            <li><a href="#info" class="menu-link">INFORMATION</a></li>
+            <li><a href="#infomation" class="menu-link">INFORMATION</a></li>
             <li><a class="menu-link bioOpenTrigger">BIOGRAPHY</a></li>
             <li><a href="#media" class="menu-link">MEDIA</a></li>
             <li><a href="#contact" class="menu-link">CONTACT</a></li>
