@@ -937,6 +937,309 @@ details[open] .toggle-icon {
     margin-right: 8px; /* マークとメアドの間に少し隙間を空けます */
     vertical-align: middle;
 }
+/* VIDEOプレビュー部分（PhotosとContactの間）のレイアウト */
+.video-preview-section {
+    padding: 40px 20px;
+}
+.video-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-width: 300px;
+}
+.video-thumbnail-card {
+    flex: 1;
+}
+
+/* MOREボタンのデザイン（2枚目を参考） */
+.more-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #c48b6b;
+}
+.plus-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color:#cb6d20; /* オレンジ・ブラウン系の色 */
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.more-text {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+}
+
+/* 3枚目のYouTube一覧ページのグリッドレイアウト */
+.youtube-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.youtube-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.video-title-text {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
+}
+.back-link-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.back-home-btn {
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+}
+/* 1枚目のように「左にタイトル＆MORE、右に動画」を横並びにする設定 */
+.video-container-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 左側のエリア */
+.video-sidebar {
+    flex-shrink: 0;
+}
+
+/* 右側の動画並びエリア */
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* 各動画カードのサイズ感 */
+.video-thumbnail-card {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* サムネイルと再生ボタンのデザイン */
+.preview-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.preview-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.video-preview-link:hover .preview-thumb-wrap img {
+    opacity: 1;
+}
+
+/* 中央の赤い再生ボタン風アイコン */
+.preview-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 42px;
+    background: rgba(255, 0, 0, 0.9);
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding-left: 2px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.video-preview-link:hover .preview-play-icon {
+    background: #ff0000;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+/* 左にタイトル＆ボタン、右に動画を綺麗に配置するフレックスボックス */
+.video-container-flex {
+    display: flex;
+    align-items: center; /* 縦方向の位置を中央に揃える */
+    justify-content: flex-start;
+    gap: 60px; /* 左のエリアと右の動画の間の余白 */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+/* 左側のタイトルとMOREボタンの塊 */
+.video-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+/* 右側の動画並びエリア */
+.video-items-preview {
+    display: flex;
+    gap: 20px; /* 動画同士の間の余白 */
+    width: 100%;
+}
+
+.video-thumbnail-card {
+    flex: 1;
+    max-width: 450px; /* 動画の最大幅 */
+}
+/* 全体を横並びにして、両端にスペースを空ける */
+.video-container-flex {
+    display: flex;
+    align-items: center; /* 縦方向を中央に揃える */
+    justify-content: space-between; /* 左・中央・右に綺麗に散らす */
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    gap: 30px;
+}
+
+/* 1. 左上の「VIDEO」文字のエリア */
+.video-title-area {
+    align-self: flex-start; /* これで「左上」に固定されます */
+    flex-shrink: 0;
+}
+
+/* 2. 中央の動画エリア（2枚目のデザインのまま横並びにする） */
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    max-width: 850px; /* 動画全体の最大幅 */
+}
+
+.video-thumbnail-card {
+    flex: 1;
+}
+
+/* 3. 右端の「+ MORE」ボタンのエリア */
+.video-more-area {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+/* セクション全体のコンテナ */
+.video-container-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 1. 一番上に配置する「VIDEO」文字のエリア */
+.video-title-area {
+    margin-bottom: 20px; /* 文字と動画の間の隙間 */
+}
+
+.video-title-area .section-title {
+    margin: 0;
+}
+
+/* 2. 動画とMOREボタンを横並びにする行 */
+.video-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* 動画の並びエリアの最大幅を広げて、中央に広く見せる */
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    max-width: 1000px; /* ここを少し大きくする */
+    margin: 0 auto; /* 中央に寄せる */
+}
+.video-thumbnail-card {
+    flex: 1;
+}
+
+/* 4. 右端の「+ MORE」ボタンエリア */
+.video-more-area {
+    flex-shrink: 0;
+}
+/* セクション全体のコンテナ */
+.video-container-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 一番上の「VIDEO」文字のエリア */
+.video-title-area {
+    margin-bottom: 20px;
+}
+
+.video-title-area .section-title {
+    margin: 0;
+}
+
+/* 動画と左右のパーツを配置する行 */
+.video-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* 左側のスペーサー（右側のMOREボタンと同じ幅を持たせて、中央を完璧に真ん中にする） */
+.left-spacer,
+.video-more-area {
+    width: 100px; /* MOREボタンの幅にあわせた固定幅（必要に応じて80px〜120pxで調整してください） */
+    flex-shrink: 0;
+}
+
+/* 右側のMOREボタンエリアは中身を右寄せに */
+.video-more-area {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 中央の動画並びエリア */
+.video-items-preview {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+    max-width: 900px;
+    justify-content: center; /* 動画自体も中央に寄せる */
+}
+
+.video-thumbnail-card {
+    flex: 1;
+    max-width: 440px;
+}
   </style>
 </head>
 <body>
@@ -950,6 +1253,7 @@ details[open] .toggle-icon {
                 <li><a class="bioOpenTrigger">BIOGRAPHY</a></li>
                 <li><a href="#media">MEDIA</a></li>
 <li><a href="#photos">PHOTOS</a></li>
+<li><a href="#video">VIDEO</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
             <div class="header-sns">
@@ -981,12 +1285,15 @@ details[open] .toggle-icon {
     <div class="nav-container" id="fullMenu">
         <div class="close-btn" id="menuCloseBtn">×</div>
         <ul class="nav-menu">
-            <li><a href="#top" class="menu-link">TOP</a></li>
-            <li><a href="#INFORMATION" class="menu-link">INFORMATION</a></li>
-            <li><a class="menu-link bioOpenTrigger">BIOGRAPHY</a></li>
-            <li><a href="#media" class="menu-link">MEDIA</a></li>
-            <li><a href="#contact" class="menu-link">CONTACT</a></li>
-        </ul>
+<ul class="nav-menu">
+    <li><a href="#top" class="menu-link">TOP</a></li>
+    <li><a href="#information" class="menu-link">INFORMATION</a></li>
+    <li><a class="menu-link bioOpenTrigger">BIOGRAPHY</a></li>
+    <li><a href="#media" class="menu-link">MEDIA</a></li>
+    <li><a href="#photos" class="menu-link">PHOTOS</a></li>
+    <li><a href="#video" class="menu-link">VIDEO</a></li>
+    <li><a href="#contact" class="menu-link">CONTACT</a></li>
+</ul>
         <div class="header-sns">
             <a href="https://www.instagram.com/mukai_hinata0708" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.tiktok.com/@mukai_hinata0708" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -1721,30 +2028,56 @@ details[open] .toggle-icon {
 </section>
         </div>
     </section> 
-<!-- Contact セクション -->
-<section id="contact" class="contact-section">
-    <div class="contact-container">
-        <h2 class="contact-title">Contact</h2>
+<!-- VIDEO セクション -->
+<section id="video" class="video-preview-section">
+    <div class="video-container-wrapper">
         
-        <p class="contact-desc">
-            お仕事のご依頼・お問い合わせは、下記メールアドレスまでご連絡ください。
-        </p>
-
-
-        <!-- メールアドレスボタン -->
-        <div class="contact-btn-wrapper">
-            <a href="mailto:mukai.hinata0708@gmail.com" class="contact-mail-btn">
-        mukai.hinata0708@gmail.com
-    </a>
+        <!-- 一番上に配置する「VIDEO」タイトル -->
+        <div class="video-title-area">
+            <h2 class="section-title">VIDEO</h2>
         </div>
 
-        <!-- Instagram DM 案内 -->
-        <div class="contact-dm">
-            Instagram DM : <a href="https://www.instagram.com/mukai_hinata0708/" target="_blank" class="dm-link">@mukai_hinata78</a>
+        <!-- 3カラム（左・中央・右）で完全に中央揃えにする行 -->
+        <div class="video-content-row">
+            
+            <!-- ① 左側のスペース（VIDEO文字の幅に合わせるためのダミー、または空要素） -->
+            <div class="video-side-spacer left-spacer"></div>
+
+            <!-- ② 中央のYouTube動画2つ -->
+            <div class="video-items-preview">
+                <!-- 動画1 -->
+                <div class="video-thumbnail-card">
+                    <a href="https://youtu.be/aOLBXEz4nbw?si=Qrz2asR0Q25fWZqN" target="_blank" class="video-preview-link">
+                        <div class="preview-thumb-wrap">
+                            <img src="https://img.youtube.com/vi/aOLBXEz4nbw/hqdefault.jpg" alt="映画「音の雫」">
+                            <div class="preview-play-icon">▶</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 動画2 -->
+                <div class="video-thumbnail-card">
+                    <a href="https://youtu.be/Z489PpIpykw?si=YdWMKaVW2Bmtvk40" target="_blank" class="video-preview-link">
+                        <div class="preview-thumb-wrap">
+                            <img src="https://img.youtube.com/vi/Z489PpIpykw/hqdefault.jpg" alt="特許庁IPBASE">
+                            <div class="preview-play-icon">▶</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ③ 右端の「+ MORE」ボタン -->
+            <div class="video-more-area">
+                <a href="video.html" class="more-button">
+                    <span class="plus-icon">+</span>
+                    <span class="more-text">MORE</span>
+                </a>
+            </div>
+
         </div>
+
     </div>
-</section>
-   <!-- フッター -->
+</section>   <!-- フッター -->
     <footer>
         <p>&copy; 向ひなた OFFICIAL SITE All Rights Reserved.</p>
     </footer>
@@ -1876,8 +2209,35 @@ details[open] .toggle-icon {
         </div>
     </div>
 </section>
+
+<!--CONTACTセクション -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+
+        <!-- 1. 「Contact」のタイトル -->
+        <h2 style="color: #222; font-size: 2rem; letter-spacing: 2px; margin-bottom: 25px; font-weight: 400;">
+            Contact
+        </h2>
+        
+        <!-- 2. 説明文 -->
+        <p style="color: #333; font-size: 1rem; margin-bottom: 30px; line-height: 1.6;">
+            お仕事のご依頼・お問い合わせは、下記メールアドレスまでご連絡ください。
+        </p>
+        
+        <!-- 3. メールアドレスの黒いボタン -->
+        <div style="margin-bottom: 35px;">
+            <a href="mailto:mukai.hinata0708@gmail.com" style="display: inline-block; background-color: #111; color: #fff; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-size: 1.1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                mukai.hinata0708@gmail.com
+            </a>
         </div>
+        
+        <!-- 4. 下部のInstagram案内 -->
+        <p style="color: #333; font-size: 1rem;">
+            Instagram DM： <a href="https://www.instagram.com/mukai_hinata78" target="_blank" style="color: #333; text-decoration: underline;">@mukai_hinata78</a>
+        </p>
+
     </div>
+</section>
 
     <!-- JavaScript（メニュー・モーダル・タブ制御） -->
     <script>
