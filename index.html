@@ -665,40 +665,42 @@
         grid-template-columns: 1fr 1fr; /* パソコンでは2カラムにすることも可能 */
     }
 }
-/* --- video セクションのデザイン --- */
 /* ==========================================================
-   VIDEOセクションの基本スタイル（PC・共通）
+   VIDEOセクション（PC用）
    ========================================================== */
-.video-section {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    box-sizing: border-box;
-}
-
 .video-container {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
+    align-items: center;
 }
 
-/* 動画アイテムごとのスタイル（必要に応じて調整してください） */
 .video-item {
-    flex: 1 1 45%; /* PCでは2カラムなど並ぶように */
+    flex: 1;
+    max-width: 450px;
     box-sizing: border-box;
 }
 
-/* 動画・iframeのはみ出し防止基本設定 */
-.video-container iframe,
-.video-container video,
-.video-container img {
+/* ▼ 完全に16:9の比率を固定し、黒帯や崩れを防ぐためのボックス ▼ */
+.video-ratio-box {
+    position: relative;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9; /* YouTubeなどの比率を維持 */
-    object-fit: cover;
+    padding-top: 56.25%; /* 16:9の黄金比（高さ÷幅） */
+    background-color: #000; /* 読み込み時のチラツキ防止用黒背景 */
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.video-ratio-box iframe,
+.video-ratio-box video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 
@@ -715,7 +717,6 @@
         overflow-x: hidden !important;
     }
 
-    /* スマホでは横並びを解除し、完全に「縦並び」にする */
     .video-container {
         display: flex !important;
         flex-direction: column !important;
@@ -732,18 +733,7 @@
         flex: none !important;
         box-sizing: border-box !important;
     }
-
-    /* スマホ画面の幅いっぱいに動画を収める */
-    .video-container iframe,
-    .video-container video,
-    .video-container img {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
-        box-sizing: border-box !important;
-    }
 }
-
 
 /* --- Contact セクションのデザイン --- */
 .contact-section {
@@ -1164,11 +1154,14 @@ details[open] .toggle-icon {
 }
 
 .preview-thumb-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-    transition: opacity 0.3s ease;
+    object-fit: contain; /* ★ cover から contain に変更します */
+    background-color: #000; /* 画像の左右に隙間が出たときの背景色 */
+    display: block;
 }
 
 .video-preview-link:hover .preview-thumb-wrap img {
@@ -2087,39 +2080,39 @@ details[open] .toggle-icon {
         <span class="bg-title">VIDEO</span>
         <h2 class="section-title">VIDEO</h2>
     </div>
+
+    <!-- 3カラム（左・中央・右）で完全に中央揃えにする行 -->
+    <div class="video-content-row">
         
- 
+        <!-- ① 左側のスペース（VIDEO文字の幅に合わせるためのダミー、または空要素） -->
+        <div class="video-side-spacer left-spacer"></div>
 
-        <!-- 3カラム（左・中央・右）で完全に中央揃えにする行 -->
-        <div class="video-content-row">
-            
-            <!-- ① 左側のスペース（VIDEO文字の幅に合わせるためのダミー、または空要素） -->
-            <div class="video-side-spacer left-spacer"></div>
+        <!-- ② 中央のYouTube動画2つ -->
+        <div class="video-items-preview">
+        <!-- 動画1 -->
+<div class="video-thumbnail-card">
+    <a href="https://youtu.be/aOLBXEz4nbw?si=Qrz2asR0Q25fWZqN" target="_blank" class="video-preview-link">
+        <div class="preview-thumb-wrap">
+            <!-- ▼ maxresdefault.jpg に変更 ▼ -->
+            <img src="https://img.youtube.com/vi/aOLBXEz4nbw/maxresdefault.jpg" alt="映画「音の雫」">
+            <div class="preview-play-icon">▶</div>
+        </div>
+    </a>
+</div>
 
-            <!-- ② 中央のYouTube動画2つ -->
-            <div class="video-items-preview">
-                <!-- 動画1 -->
-                <div class="video-thumbnail-card">
-                    <a href="https://youtu.be/aOLBXEz4nbw?si=Qrz2asR0Q25fWZqN" target="_blank" class="video-preview-link">
-                        <div class="preview-thumb-wrap">
-                            <img src="https://img.youtube.com/vi/aOLBXEz4nbw/hqdefault.jpg" alt="映画「音の雫」">
-                            <div class="preview-play-icon">▶</div>
-                        </div>
-                    </a>
-                </div>
+<!-- 動画2 -->
+<div class="video-thumbnail-card">
+    <a href="https://youtu.be/Z489PpIpykw?si=YdWMKaVW2Bmtvk40" target="_blank" class="video-preview-link">
+        <div class="preview-thumb-wrap">
+            <!-- ▼ maxresdefault.jpg に変更 ▼ -->
+            <img src="https://img.youtube.com/vi/Z489PpIpykw/maxresdefault.jpg" alt="特許庁IPBASE">
+            <div class="preview-play-icon">▶</div>
+        </div>
+    </a>
+</div>
 
-                <!-- 動画2 -->
-                <div class="video-thumbnail-card">
-                    <a href="https://youtu.be/Z489PpIpykw?si=YdWMKaVW2Bmtvk40" target="_blank" class="video-preview-link">
-                        <div class="preview-thumb-wrap">
-                            <img src="https://img.youtube.com/vi/Z489PpIpykw/hqdefault.jpg" alt="特許庁IPBASE">
-                            <div class="preview-play-icon">▶</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
-            <!-- ③ 右端の「+ MORE」ボタン -->
+     <!-- ③ 右端の「+ MORE」ボタン -->
             <div class="video-more-area">
                 <a href="video.html" class="more-button">
                     <span class="plus-icon">+</span>
