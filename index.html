@@ -1624,71 +1624,74 @@ details[open] .toggle-icon {
 }
 
 /* ==========================================================
-   スマホ表示（画面幅768px以下）のときだけに適用するスタイル
+   スマホ（画面幅768px以下）でMEDIAとVIDEOを縦並びに収める設定
    ========================================================== */
 @media screen and (max-width: 768px) {
 
-    /* 1. video セクション・コンテナのスマホ用調整 */
-    #video, 
-    .video-section, 
-    .video-container {
+    /* 1. セクション自体の幅をスマホの画面幅ぴったりに制限 */
+    #media, #video, .media-section, .video-section {
         width: 100% !important;
         max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
         padding-left: 15px !important;
         padding-right: 15px !important;
         box-sizing: border-box !important;
         overflow-x: hidden !important;
     }
 
-    /* video内のiframeや画像のはみ出し防止 */
+    /* 2. MEDIAのリスト項目を「縦並び」にする（右側への見切れを防ぐ） */
+    #media .work-item,
+    .work-item {
+        display: flex !important;
+        flex-direction: column !important; /* 横並びから縦並びに強制変更 */
+        align-items: flex-start !important;
+        gap: 8px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* タグや日付の入っているヘッダー部分 */
+    #media .work-header,
+    .work-header {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 10px !important;
+    }
+
+    /* メディアのコンテンツ・テキスト部分 */
+    #media .work-content,
+    .work-content {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 3. VIDEOの動画やコンテナをスマホ幅に合わせる */
+    #video .video-container,
+    .video-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
     #video iframe,
     #video video,
     #video img,
     .video-container iframe,
-    .video-container video,
-    .video-container img {
+    .video-container video {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
         box-sizing: border-box !important;
     }
 
-    /* 2. media / media.html セクションのスマホ用調整 */
-    #media, 
-    .media-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-        box-sizing: border-box !important;
-        overflow-x: hidden !important;
-    }
-
-    /* media内のボックスやリストの幅調整 */
+    /* 4. 各種ボックス類のはみ出し防止 */
     .works-box, 
     .works-genre-block, 
-    .works-list, 
-    .work-item {
+    .works-list {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
-    }
-
-    /* 作品リストの項目がはみ出さないように縦並びに整理 */
-    .work-item {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
-    }
-
-    /* タブボタンの横幅調整 */
-    .genre-tabs {
-        width: 100% !important;
-        box-sizing: border-box !important;
+        padding: 15px !important;
     }
 }
 
