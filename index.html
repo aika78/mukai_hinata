@@ -147,36 +147,31 @@
             pointer-events: none;
         }
 
-        /* --- NEWS リスト --- */
-        .news-list {
-            list-style: none;
-            border-top: 1px solid #eee;
-        }
-        .news-item {
-            display: flex;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            gap: 20px;
-        }
-        .news-date {
-            font-size: 0.85rem;
-            color: #666;
-            white-space: nowrap;
-        }
-        .news-tag {
-            font-size: 0.75rem;
-            padding: 3px 10px;
-            background-color: #d2691e;
-            color: #fff;
-            border-radius: 2px;
-            white-space: nowrap;
-        }
-        .news-title {
-            font-size: 0.95rem;
-            color: #222;
-        }
+        /* --- information リスト --- */
+       @media screen and (max-width: 768px) {
+    /* INFORMATIONの項目内をスマホでは縦並びにする */
+    .info-header, summary.info-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        padding: 12px 0 !important;
+    }
 
+    /* 日付とタグの並び */
+    .info-meta {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    /* タイトルが重ならないように幅を100%に */
+    .info-title {
+        width: 100% !important;
+        margin: 0 !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+}
         /* --- MEDIA セクション & タブ切替・リスト --- */
         .genre-tabs {
             display: flex;
@@ -1810,7 +1805,7 @@ details[open] .toggle-icon {
         <div class="header-right">
             <ul class="nav-menu">
                 <li><a href="#top">TOP</a></li>
-                <li><a href="#INFORMATION">INFORMATION</a></li>
+                <li><a href="#information">INFORMATION</a></li>
                 <li><a class="bioOpenTrigger">BIOGRAPHY</a></li>
                 <li><a href="#media">MEDIA</a></li>
 <li><a href="#photos">PHOTOS</a></li>
@@ -1875,7 +1870,7 @@ details[open] .toggle-icon {
     </div>
 
     <!-- INFORMATION セクション -->
-<section id="INFORMATION" class="info-section">
+<section id="information" class="info-section">
     <!-- ▼ ここをラッパーで囲み、背景用の文字を追加する ▼ -->
     <div class="section-title-wrapper">
         <span class="bg-title">INFORMATION</span>
