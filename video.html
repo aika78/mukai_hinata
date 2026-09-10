@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIDEO - 作品一覧</title>
-    <link rel="stylesheet" href="style.css"> <!-- 共通のCSS -->
+    <link rel="stylesheet" href="style.css"> 
+
+<!-- 共通のCSS -->
     <style>
+/* ▼ 追加：タイトルを重ねるための親コンテナ ▼ */
+    .section-title-wrapper {
+        position: relative;
+        height: 70px; /* 背景の文字がしっかり収まる高さ */
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+/* 背景にうっすらと表示される大きな文字（共通） */
+.bg-title {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem; /* 大きさを統一 */
+    letter-spacing: 4px; /* 文字間隔を統一 */
+    color: rgba(181, 101, 29, 0.08);
+    font-weight: bold;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: "Times New Roman", serif; /* フォントを統一 */
+}
+
+     /* 画像のような「video」の大きな見出し */
+       .section-title {
+    position: relative;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: #b5651d;
+    font-weight: normal;
+    z-index: 2;
+    margin: 0;
+    /* ▼ ここに他のセクションと同じフォントを指定する ▼ */
+    font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
         /* 一覧ページ専用の洗練されたスタイル */
         body {
             background-color: #fafafa;
@@ -129,7 +170,17 @@ font-family: "Cinzel", "Times New Roman", "Yu Mincho", serif;
 
     <section class="video-list-section">
         <div class="container">
-            <h1 class="page-title">VIDEO</h1>
+           
+
+
+<section id="video">
+    <!-- ▼ ラッパーで囲み、背景用の文字を追加 ▼ -->
+    <div class="section-title-wrapper">
+        <span class="bg-title">VIDEO</span>
+        <h2 class="section-title">VIDEO</h2>
+    </div>
+
+
 
             <!-- 洗練されたグリッド一覧 -->
             <div class="youtube-grid">
