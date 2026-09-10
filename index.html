@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向ひなた OFFICIAL SITE</title>
+    <!-- SNSアイコンを表示するためのライブラリ読み込み -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Yu Mincho", YuMincho, "Hiragino Mincho ProN", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+            color: #333;
+            background-color: #fff;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+
+        /* --- ヘッダー（PC用基準） --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 18px 4%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .nav-menu li a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: #d2691e;
+            cursor: pointer;
+        }
+        .nav-menu li a:hover {
+            opacity: 0.6;
+        }
+        .header-sns {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+        .header-sns a {
+            font-size: 0.9rem;
+            color: #d2691e;
+            border: 1px solid #d2691e;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-sns a:hover {
+            background-color: #d2691e;
+            color: #fff;
+        }
+
+        /* --- スマホ用メニュー関連（PC画面では非表示） --- */
+        .menu-btn {
+            display: none;
+        }
+        .nav-container {
+            display: none;
+        }
+
+        /* --- メインビジュアル（トップの写真部分） --- */
+        .hero {
+            height: 100vh;
+            background-image: url('main1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+        }
+        .hero-title {
+            color: #fff;
+        }
+        .hero-title h1 {
+            font-size: 4rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            font-family: "Yu Mincho", YuMincho, serif;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .hero-title p {
+            font-size: 1.1rem;
+            letter-spacing: 0.3em;
+            opacity: 0.95;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- 各セクション共通 --- */
+        section {
+            padding: 100px 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            color: #d2691e;
+            position: relative;
+            z-index: 2;
+        }
+        .section-title::before {
+            content: attr(data-bg);
+            position: absolute;
+            top: -35px;
+            left: -20px;
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(210, 105, 30, 0.04);
+            z-index: -1;
+            letter-spacing: 0.05em;
+            pointer-events: none;
+        }
+
+        /* --- NEWS リスト --- */
+        .news-list {
+            list-style: none;
+            border-top: 1px solid #eee;
+        }
+        .news-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            gap: 20px;
+        }
+        .news-date {
+            font-size: 0.85rem;
+            color: #666;
+            white-space: nowrap;
+        }
+        .news-tag {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            background-color: #d2691e;
+            color: #fff;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+        .news-title {
+            font-size: 0.95rem;
+            color: #222;
+        }
+
+        /* --- MEDIA セクション & タブ切替・リスト --- */
+        .genre-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .tab-btn {
+            padding: 15px 30px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #333;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background-color: #d2691e;
+            color: #fff;
+            border-color: #d2691e;
+        }
+        .works-list-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .work-item {
+            display: flex;
+            align-items: center;
+            background: #fafafa;
+            padding: 15px 20px;
+            border-radius: 2px;
+            border-left: 3px solid #d2691e;
+            gap: 20px;
+        }
+        .work-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 120px;
+        }
+        .genre-tag {
+            font-size: 0.75rem;
+            background: #d2691e;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 2px;
+        }
+        .work-date {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .work-content {
+            font-size: 0.95rem;
+        }
+        .work-title-link {
+            color: #d2691e;
+            text-decoration: underline;
+        }
+        .work-title-link:hover {
+            opacity: 0.7;
+        }
+        .work-title-text {
+            color: #333;
+        }
+
+        /* --- BIOGRAPHY モーダル（ポップアップ詳細画面） --- */
+        .bio-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .bio-modal.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .bio-modal-content {
+            background-color: #fff;
+            width: 85%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 4px;
+            overflow-y: auto;
+            padding: 60px 50px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .bio-close-btn {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 1.8rem;
+            color: #666;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+        .bio-close-btn:hover {
+            color: #d2691e;
+        }
+
+        .bio-header-area {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 40px;
+        }
+        .bio-avatar {
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .bio-intro h2 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: #222;
+            margin-bottom: 5px;
+        }
+        .bio-intro .en-name {
+            font-size: 0.9rem;
+            color: #888;
+            letter-spacing: 0.2em;
+            margin-bottom: 25px;
+        }
+        .bio-specs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+        .bio-specs dt {
+            font-weight: bold;
+            color: #d2691e;
+            display: inline-block;
+            width: 80px;
+        }
+
+        /* --- 通常ページの BIOGRAPHY 簡易紹介エリア --- */
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img {
+            width: 350px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
+            color: #d2691e;
+        }
+        .about-text .sub-name {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 25px;
+            letter-spacing: 0.15em;
+        }
+        .about-text p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .detail-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #d2691e;
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .detail-btn:hover {
+            background-color: #b55617;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            background-color: #fafafa;
+        }
+.biography-content, .bio-box {
+    padding: 20px; /* 周りにゆとりを持たせる */
+    line-height: 1.8; /* 行間を少し広げて読みやすくする */
+    word-break: break-all; /* 長い単語や学歴の途中で変なはみ出しを防ぐ */
+}
+        /* --- スマホ画面（幅768px以下） --- */
+        @media (max-width: 768px) {
+            header {
+                background-color: transparent;
+                padding: 15px 20px;
+                justify-content: flex-end;
+            }
+            .header-right {
+                display: none;
+            }
+            .menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 45px;
+                height: 45px;
+                background-color: rgba(255, 255, 255, 0.9);
+                border-radius: 50%;
+                color: #d2691e;
+                font-size: 1.2rem;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            }
+            .nav-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(255, 255, 255, 0.97);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 10%;
+                z-index: 2000;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+            .nav-container.active {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .close-btn {
+                position: absolute;
+                top: 20px;
+                right: 25px;
+                width: 45px;
+                height: 45px;
+                background-color: #f5f5f5;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #d2691e;
+                font-size: 1.3rem;
+                cursor: pointer;
+            }
+            .nav-container .nav-menu {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                list-style: none;
+            }
+            .nav-container .nav-menu li a {
+                color: #d2691e;
+                font-size: 1.3rem;
+                letter-spacing: 0.15em;
+            }
+            .nav-container .header-sns {
+                display: flex;
+                gap: 1.2rem;
+                margin-top: 2.5rem;
+            }
+            .hero {
+                padding: 0 20px;
+            }
+            .hero-title h1 {
+                font-size: 2.8rem;
+            }
+            .about-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            .about-img {
+                width: 100%;
+                height: 380px;
+            }
+            section {
+                padding: 60px 5%;
+            }
+            .bio-modal-content {
+                width: 92%;
+                height: 90vh;
+                padding: 30px 20px;
+            }
+            .bio-header-area {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+/* デフォルトではすべてのジャンルブロックを隠す */
+.works-genre-block {
+    display: none;
+}
+
+/* 表示対象となったブロックだけを表示する */
+.works-genre-block.is-show {
+    display: block;
+}
+/* --- BIOGRAPHY カッコいいデザイン --- */
+.bio-section {
+    padding: 80px 20px;
+    background-color: #faf9f6; /* 上品なオフホワイト */
+    color: #333;
+}
+
+.bio-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* プロフィールカード枠 */
+.bio-profile-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin-bottom: 50px;
+}
+
+/* スペック情報（必ず縦一列にきれいに並べる） */
+.bio-specs dl {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 0 30px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+
+.bio-row {
+    display: flex;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.bio-row dt {
+    width: 100px;
+    font-weight: bold;
+    color: #b36b39; /* アクセントカラー（オレンジ系） */
+    flex-shrink: 0;
+}
+
+.bio-row dd {
+    margin: 0;
+    color: #555;
+    flex: 1;
+}
+
+/* 本人コメント */
+.bio-message p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+    margin: 0;
+}
+
+/* 経歴・出演歴のカテゴリー */
+.bio-history-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.bio-category {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    border-left: 4px solid #b36b39;
+}
+
+.bio-cat-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+}
+
+/* リストのデザイン */
+.bio-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bio-list li {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #f0f0f0;
+}
+
+.bio-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* 日付のタグ風デザイン */
+.bio-list .date {
+    background: #f4ede2;
+    color: #b36b39;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+/* スマホ対応 */
+@media (min-width: 768px) {
+    .bio-specs dl {
+        grid-template-columns: 1fr 1fr; /* パソコンでは2カラムにすることも可能 */
+    }
+}
+/* --- Contact セクションのデザイン --- */
+.contact-section {
+    padding: 100px 20px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-size: 32px;
+    font-family: serif;
+    letter-spacing: 0.05em;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    font-weight: normal;
+}
+
+.contact-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.contact-note {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+/* メールボタン */
+.contact-btn-wrapper {
+    margin-bottom: 40px;
+}
+
+.contact-mail-btn {
+    display: inline-block;
+    background-color: #111;
+    color: #fff;
+    padding: 18px 36px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: serif;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-mail-btn:hover {
+    background-color: #b36b39; /* ブランドのオレンジ系カラーに合わせる場合 */
+    transform: translateY(-2px);
+}
+
+/* Instagram DM 案内 */
+.contact-dm {
+    font-size: 14px;
+    color: #444;
+}
+
+.dm-link {
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #111;
+    padding-bottom: 2px;
+    margin-left: 4px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.dm-link:hover {
+    color: #b36b39;
+    border-color: #b36b39;
+}
+/* --- Photos セクションのデザイン --- */
+.photos-section {
+    padding: 100px 20px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+}
+
+.photos-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.photos-title {
+   font-size: 32px;
+    font-family: serif;
+    letter-spacing: 0.05em;
+    color: #b36b39; /* ← ここに他の文字と同じオレンジ（ブラウン）系の色を指定します */
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.photos-desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 50px;
+}
+/* 写真全体のコンテナ（カラムレイアウトを使う） */
+.photos-grid {
+    column-count: 4;          /* PCでは4列 */
+    column-gap: 20px;         /* 左右の隙間を「20px」で完全に統一 */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 個々の写真ボックス */
+.photo-item {
+    break-inside: avoid;      /* 写真の途中でボックスが変に途切れないようにする */
+    margin-bottom: 20px;      /* 縦の隙間も「20px」で統一してきれいに詰める */
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 元の写真のサイズ（縦横比）をそのまま保つ設定 */
+.photo-item img {
+    width: 100%;
+    height: auto;             /* 高さは自動にして元の比率をキープ */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-item img:hover {
+    transform: scale(1.03);
+}
+
+/* スマホや画面が狭いときの列数調整（2列にする場合） */
+@media (max-width: 768px) {
+    .photos-grid {
+        column-count: 2;      /* スマホでは2列にする */
+        column-gap: 12px;     /* スマホでの左右の隙間 */
+    }
+    .photo-item {
+        margin-bottom: 12px;  /* スマホでの縦の隙間 */
+    }
+}
+/* INFORMATIONセクション全体 */
+.info-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: #b5653d;
+}
+
+/* 各ニュース項目 */
+.info-item {
+    border-bottom: 1px solid #d2b48c;
+    transition: background-color 0.3s;
+}
+
+/* 常に見えているヘッダー部分 */
+.info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.info-header::-webkit-details-marker {
+    display: none;
+}
+
+.info-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 140px;
+}
+
+.info-date {
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+/* タグデザイン */
+.info-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background-color: #666;
+    color: #fff;
+}
+.info-tag-orange {
+    background-color: #c46210;
+}
+
+.info-title {
+    flex-grow: 1;
+    font-size: 15px;
+    color: #333;
+    margin: 0 20px;
+}
+
+/* 「＋」アイコンの回転アニメーション */
+.toggle-icon {
+    font-size: 18px;
+    color: #888;
+    transition: transform 0.3s ease;
+}
+
+details[open] .toggle-icon {
+    transform: rotate(45deg);
+}
+
+/* 開いたときの中身エリア */
+.info-content {
+    padding: 20px 20px 25px 20px;
+    background-color: #f7f9fa;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.info-content p {
+    margin-bottom: 8px;
+}
+/* スマホ画面（幅768px以下）の場合のレイアウト調整 */
+@media screen and (max-width: 768px) {
+    /* プロフィール全体の余白を調整 */
+    .bio-profile-card, .bio-container, .bio-specs {
+        padding: 0 10px;
+    }
+
+    /* 各行（生年月日やサイズなど）を上下の縦並びにする */
+    .bio-row {
+        display: flex;
+        flex-direction: column; /* スマホではラベルと内容を縦に積む */
+        margin-bottom: 16px;
+        border-bottom: 1px dashed #e0d0c0; /* 薄い区切り線を入れるとさらに見やすいです */
+        padding-bottom: 12px;
+    }
+
+    /* 項目名（生年月日、サイズなど）のデザイン */
+    .bio-row dt {
+        font-size: 13px;
+        color: #b58d63; /* テーマに合わせた温かみのあるブラウン */
+        font-weight: bold;
+        margin-bottom: 4px;
+        letter-spacing: 0.05em;
+    }
+
+    /* 内容側のデザイン（サイズや改行位置を整える） */
+    .bio-row dd {
+        margin-left: 0; /* 左の余白をリセット */
+        font-size: 14px;
+        line-height: 1.6;
+        color: #333333;
+    }
+}
+/* 1. 「Contact」タイトルと下の文章の間隔を狭くする */
+.contact-section h2, 
+#contact .section-title {
+    margin-bottom: 10px; /* ここを小さくすると間が狭くなります（元が30pxや50pxなどになっていれば調整してください） */
+}
+
+/* 2. 黒いボタンの中のメールアイコンを大きくして見やすくする */
+.contact-button a, 
+.email-btn, 
+#contact .btn {
+    /* アイコン（メールマーク）の文字サイズを大きくする */
+    font-size: 18px; /* お好みで 18px 〜 22px くらいに調整してください */
+}
+
+/* もしアイコンを特殊文字（✉など）ではなく、絵文字や別のフォントアイコンで入れている場合の調整例 */
+.contact-button i, 
+.email-icon {
+    font-size: 20px;
+    margin-right: 8px; /* アイコンとメールアドレスの間隔を少し空ける */
+}  
+/* 1. Contactセクション自体の上の余白を狭くする */
+#contact, .contact-section {
+    padding-top: 10px !important; /* 数値を小さくすると上の余白が狭くなります（例: 30px〜50pxでお好み調整） */
+    padding-bottom: 50px !important;
+}
+
+/* 2. 「Contact」タイトルと下の文章の間隔もスッキリさせる */
+#contact h2, .contact-section h2 {
+    margin-bottom: 10px;
+}
+
+/* 3. ボタンの中のメールマーク（✉）だけを大きくする */
+.contact-button a span, 
+.email-icon {
+    font-size: 20px; /* マークのサイズを大きくします */
+    margin-right: 8px; /* マークとメアドの間に少し隙間を空けます */
+    vertical-align: middle;
+}
+/* VIDEOプレビュー部分（PhotosとContactの間）のレイアウト */
+.video-preview-section {
+    padding: 40px 20px;
+}
+.video-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-width: 300px;
+}
+.video-thumbnail-card {
+    flex: 1;
+}
+
+/* MOREボタンのデザイン（2枚目を参考） */
+.more-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #c48b6b;
+}
+.plus-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color:#cb6d20; /* オレンジ・ブラウン系の色 */
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.more-text {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+}
+
+/* 3枚目のYouTube一覧ページのグリッドレイアウト */
+.youtube-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+.youtube-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.video-title-text {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
+}
+.back-link-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.back-home-btn {
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+}
+/* 1枚目のように「左にタイトル＆MORE、右に動画」を横並びにする設定 */
+.video-container-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 左側のエリア */
+.video-sidebar {
+    flex-shrink: 0;
+}
+
+/* 右側の動画並びエリア */
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* 各動画カードのサイズ感 */
+.video-thumbnail-card {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* サムネイルと再生ボタンのデザイン */
+.preview-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.preview-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.video-preview-link:hover .preview-thumb-wrap img {
+    opacity: 1;
+}
+
+/* 中央の赤い再生ボタン風アイコン */
+.preview-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 42px;
+    background: rgba(255, 0, 0, 0.9);
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding-left: 2px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.video-preview-link:hover .preview-play-icon {
+    background: #ff0000;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+/* 左にタイトル＆ボタン、右に動画を綺麗に配置するフレックスボックス */
+.video-container-flex {
+    display: flex;
+    align-items: center; /* 縦方向の位置を中央に揃える */
+    justify-content: flex-start;
+    gap: 60px; /* 左のエリアと右の動画の間の余白 */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+/* 左側のタイトルとMOREボタンの塊 */
+.video-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+/* 右側の動画並びエリア */
+.video-items-preview {
+    display: flex;
+    gap: 20px; /* 動画同士の間の余白 */
+    width: 100%;
+}
+
+.video-thumbnail-card {
+    flex: 1;
+    max-width: 450px; /* 動画の最大幅 */
+}
+/* 全体を横並びにして、両端にスペースを空ける */
+.video-container-flex {
+    display: flex;
+    align-items: center; /* 縦方向を中央に揃える */
+    justify-content: space-between; /* 左・中央・右に綺麗に散らす */
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    gap: 30px;
+}
+
+/* 1. 左上の「VIDEO」文字のエリア */
+.video-title-area {
+    align-self: flex-start; /* これで「左上」に固定されます */
+    flex-shrink: 0;
+}
+
+/* 2. 中央の動画エリア（2枚目のデザインのまま横並びにする） */
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    max-width: 850px; /* 動画全体の最大幅 */
+}
+
+.video-thumbnail-card {
+    flex: 1;
+}
+
+/* 3. 右端の「+ MORE」ボタンのエリア */
+.video-more-area {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+/* セクション全体のコンテナ */
+.video-container-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 1. 一番上に配置する「VIDEO」文字のエリア */
+.video-title-area {
+    margin-bottom: 20px; /* 文字と動画の間の隙間 */
+}
+
+.video-title-area .section-title {
+    margin: 0;
+}
+
+/* 2. 動画とMOREボタンを横並びにする行 */
+.video-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* 動画の並びエリアの最大幅を広げて、中央に広く見せる */
+.video-items-preview {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    max-width: 1000px; /* ここを少し大きくする */
+    margin: 0 auto; /* 中央に寄せる */
+}
+.video-thumbnail-card {
+    flex: 1;
+}
+
+/* 4. 右端の「+ MORE」ボタンエリア */
+.video-more-area {
+    flex-shrink: 0;
+}
+/* セクション全体のコンテナ */
+.video-container-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 一番上の「VIDEO」文字のエリア */
+.video-title-area {
+    margin-bottom: 20px;
+}
+
+.video-title-area .section-title {
+    margin: 0;
+}
+
+/* 動画と左右のパーツを配置する行 */
+.video-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* 左側のスペーサー（右側のMOREボタンと同じ幅を持たせて、中央を完璧に真ん中にする） */
+.left-spacer,
+.video-more-area {
+    width: 100px; /* MOREボタンの幅にあわせた固定幅（必要に応じて80px〜120pxで調整してください） */
+    flex-shrink: 0;
+}
+
+/* 右側のMOREボタンエリアは中身を右寄せに */
+.video-more-area {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 中央の動画並びエリア */
+.video-items-preview {
+    display: flex;
+    gap: 25px;
+    flex: 1;
+    max-width: 900px;
+    justify-content: center; /* 動画自体も中央に寄せる */
+}
+
+.video-thumbnail-card {
+    flex: 1;
+    max-width: 440px;
+}
+/* メディアセクション全体の大枠 */
+.media-section {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.media-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* リスト側のスタイル */
+.media-list {
+  flex: 1;
+}
+
+.media-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0e6dc; /* 薄いオレンジ・ブラウン系のボーダー */
+}
+
+/* バッジ（MOVIE / TVなど）のオレンジ系デザイン */
+.media-badge {
+  background-color: #d37325; /* 統一感のあるオレンジ色 */
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 4px 12px;
+  letter-spacing: 0.05em;
+}
+
+.media-date {
+  color: #d37325; /* 日付もオレンジ系で統一 */
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.media-text {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* 右側エリア（見出し ＆ MOREボタン） */
+.media-sidebar {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 右寄せ */
+}
+
+.media-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #d37325; /* オレンジ系の見出しカラー */
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  font-family: serif;
+}
+
+/* MOREボタンのスタイル */
+.more-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.plus-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #d37325; /* オレンジの円背景 */
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.more-text {
+  color: #d37325;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.more-btn:hover .plus-icon {
+  background-color: #b55f1c; /* ホバー時に少し濃いオレンジに */
+}
+
+/* レスポンシブ対応（スマホ画面など） */
+@media (max-width: 768px) {
+  .media-container {
+    flex-direction: column-reverse; /* スマホでは見出しを上に、リストを下にすることも可能 */
+    align-items: stretch;
+  }
+  .media-sidebar {
+    width: 100%;
+    align-items: flex-start;
+  }
+}
+.media-sidebar {
+  position: relative;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.media-title-box {
+  position: relative;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* 背景に大きく薄く配置する数字や文字 */
+.bg-number {
+  position: absolute;
+  top: -30px;
+  right: -10px;
+  font-size: 7rem;
+  font-weight: 900;
+  color: rgba(211, 115, 37, 0.08); /* オレンジの超薄い色 */
+  z-index: 0;
+  line-height: 1;
+  font-family: serif;
+}
+
+.media-title {
+  position: relative;
+  z-index: 1;
+  font-size: 3.2rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: #d37325;
+  font-family: serif;
+}
+
+.media-section-poster {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ポスターのように上部に大きく配置するタイトル */
+.poster-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid #d37325;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.poster-title {
+  font-size: 5rem;
+  font-weight: 100;
+  color: #d37325;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+
+/* 丸いおしゃれなMOREリンク */
+.poster-more {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #d37325;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d37325;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  transition: background 0.3s, color 0.3s;
+}
+
+.poster-more:hover {
+  background-color: #d37325;
+  color: #fff;
+}
+
+.media-sidebar {
+  position: relative;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.media-title-box {
+  position: relative;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* 背景に大きく薄く配置する数字や文字 */
+.bg-number {
+  position: absolute;
+  top: -30px;
+  right: -10px;
+  font-size: 7rem;
+  font-weight: 900;
+  color: rgba(211, 115, 37, 0.08); /* オレンジの超薄い色 */
+  z-index: 0;
+  line-height: 1;
+  font-family: serif;
+}
+
+.media-title {
+  position: relative;
+  z-index: 1;
+  font-size: 3.2rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: #d37325;
+  font-family: serif;
+}
+
+/* --- ダイナミックなMEDIAセクション全体 --- */
+.media-section-art {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+/* 左側のタイトルエリア */
+.media-hero-title {
+  flex-shrink: 0;
+}
+
+.sub-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: #b55f1c;
+  margin-bottom: 5px;
+}
+
+/* 圧倒的に個性的で大きな「MEDIA」タイトル */
+.huge-media-text {
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: #d37325;
+  font-family: 'Times New Roman', serif;
+  font-style: italic; /* 斜体で動きを出す */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 25px 0;
+  transform: rotate(-3deg); /* 少し傾ける */
+}
+
+/* 尖ったお洒落なMOREボタン */
+.art-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  background-color: #d37325;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  box-shadow: 0 4px 15px rgba(211, 115, 37, 0.3);
+  transition: all 0.3s ease;
+}
+
+.art-more-btn:hover {
+  background-color: #1a1a1a;
+  transform: translateX(5px);
+}
+
+.art-more-btn .arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* 右側のリストデザイン */
+.media-art-list {
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.media-art-list .media-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f2decb;
+}
+
+.media-art-list .media-badge {
+  background-color: #d37325;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 12px;
+  letter-spacing: 0.05em;
+}
+
+.media-art-list .media-date {
+  color: #d37325;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.media-art-list .media-text {
+  color: #333;
+  font-size: 0.95rem;
+}
+/* タイトルを重ねるための親コンテナ */
+.section-title-wrapper {
+    position: relative;
+    height: 70px; /* 背景の文字が収まる高さ */
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* 背景にうっすらと表示される大きな文字 */
+.bg-title {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem; /* お好みの大きさに調整してください */
+    letter-spacing: 4px;
+    color: rgba(181, 101, 29, 0.05); /* うっすら見せるための薄い色（必要に応じて調整） */
+    font-weight: bold;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: "Times New Roman", serif; /* フォントを合わせる */
+}
+
+/* 手前にくる通常の「INFORMATION」見出し */
+.section-title {
+    position: relative;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: #b5651d; /* テキストのテーマカラー */
+    font-weight: normal;
+    z-index: 2;
+    margin: 0;
+}
+  </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-right">
+            <ul class="nav-menu">
+                <li><a href="#top">TOP</a></li>
+                <li><a href="#INFORMATION">INFORMATION</a></li>
+                <li><a class="bioOpenTrigger">BIOGRAPHY</a></li>
+                <li><a href="#media">MEDIA</a></li>
+<li><a href="#photos">PHOTOS</a></li>
+<li><a href="#video">VIDEO</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="header-sns">
+               <!-- Instagram -->
+    <a href="https://www.instagram.com/mukai_hinata0708/" target="_blank" class="sns-icon">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <!-- ★ここにX（旧Twitter）を追加する場合 -->
+    <a href="https://x.com/mukai_hinata78" target="_blank" class="sns-icon">
+        <i class="fab fa-x"></i>
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@mukai_hinata0708" target="_blank" class="sns-icon">
+        <i class="fab fa-tiktok"></i>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/channel/UCn8dMjVOoX-MXJ3B8LmyvQw" target="_blank" class="sns-icon">
+        <i class="fab fa-youtube"></i>
+    </a>
+</div>
+        </div>
+        <div class="menu-btn" id="menuOpenBtn">≡</div>
+    </header>
+
+    <!-- スマホ用メニュー -->
+    <div class="nav-container" id="fullMenu">
+        <div class="close-btn" id="menuCloseBtn">×</div>
+        <ul class="nav-menu">
+<ul class="nav-menu">
+    <li><a href="#top" class="menu-link">TOP</a></li>
+    <li><a href="#information" class="menu-link">INFORMATION</a></li>
+    <li><a class="menu-link bioOpenTrigger">BIOGRAPHY</a></li>
+    <li><a href="#media" class="menu-link">MEDIA</a></li>
+    <li><a href="#photos" class="menu-link">PHOTOS</a></li>
+    <li><a href="#video" class="menu-link">VIDEO</a></li>
+    <li><a href="#contact" class="menu-link">CONTACT</a></li>
+</ul>
+        <div class="header-sns">
+            <a href="https://www.instagram.com/mukai_hinata0708" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@mukai_hinata0708" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+<!-- X（旧Twitter）のリンクを追加 -->
+<a href="https://x.com/mukai_hinata78" target="_blank" rel="noopener noreferrer" aria-label="X (旧Twitter)">
+    <i class="fab fa-twitter"></i> <!-- ←Font Awesomeのクラスを指定 -->
+</a>
+            <a href="https://www.youtube.com/channel/UCn8dMjVOoX-MXJ3B8LmyvQw" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <!-- トップビジュアル -->
+    <div id="top" class="hero">
+        <div class="hero-title">
+            <h1>向ひなた</h1>
+            <p>OFFICIAL SITE</p>
+        </div>
+    </div>
+
+    <!-- INFORMATION セクション -->
+<section id="INFORMATION" class="info-section">
+    <!-- ▼ ここをラッパーで囲み、背景用の文字を追加する ▼ -->
+    <div class="section-title-wrapper">
+        <span class="bg-title">INFORMATION</span>
+        <h2 class="section-title">INFORMATION</h2>
+    </div>
+
+    <div class="info-list">
+
+        <!-- 2026.09: 親子でワクワク！ 学び発見フェスティバル！ -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.09</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">親子でワクワク！ 学び発見フェスティバル！／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 親子でワクワク！ 学び発見フェスティバル！／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 愛知県常滑市</p>
+            </div>
+        </details>
+
+        <!-- 2026.09: ちびっこジャンボリー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.09</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">ちびっこジャンボリー／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ちびっこジャンボリー／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 愛知県常滑市</p>
+            </div>
+        </details>
+
+        <!-- 2026.08: SAGAものスゴフェスタ12 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「SAGAものスゴフェスタ12 サイエンスファクトリー」出演</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> SAGAものスゴフェスタ12 サイエンスファクトリー</p>
+                <p><strong>【開催場所】</strong> SAGAアリーナ・佐賀市文化会館</p>
+            </div>
+        </details>
+
+        <!-- 2026.07: みなとみらいミネラルマルシェ -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.07</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「サイエンスパフォーマンスフェス２０２６ in みなとみらいミネラルマルシェ」</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> サイエンスパフォーマンスフェス２０２６ in みなとみらいミネラルマルシェ</p>
+                <p><strong>【企画】</strong> GENKI LABO</p>
+            </div>
+        </details>
+
+        <!-- 2026.03: ふくしま再エネファミリーラボ2026 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.03</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「ふくしま再エネファミリーラボ2026」出演</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ふくしま再エネファミリーラボ2026</p>
+                <p><strong>【主催】</strong> 福島県エネルギー課</p>
+            </div>
+        </details>
+
+        <!-- 2026.02: Ｑでんみらいスクール -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2026.02</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">Ｑでんみらいスクール★九電科学実験イベント／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> Ｑでんみらいスクール★九電科学実験イベント／サイエンスショー</p>
+                <p><strong>【主催】</strong> 九州電力</p>
+            </div>
+        </details>
+
+        <!-- 2025.12: カーボンニュートラルフェア in かごしま -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.12</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">カーボンニュートラルフェア in かごしま／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> カーボンニュートラルフェア in かごしま／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 鹿児島県鹿児島市</p>
+            </div>
+        </details>
+
+        <!-- 2025.11: かごしままるごとフェス -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.11</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">かごしままるごとフェス ワークショップ／サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> かごしままるごとフェス ワークショップ／サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 鹿児島県南さつま市</p>
+            </div>
+        </details>
+
+        <!-- 2025.10: ふくしま水素エネルギー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.10</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">ふくしま水素エネルギー サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ふくしま水素エネルギー サイエンスショー</p>
+            </div>
+        </details>
+
+        <!-- 2025.10: ボートレース若松 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.10</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">ボートレース若松 サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ボートレース若松 サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 福岡県北九州市</p>
+            </div>
+        </details>
+
+        <!-- 2025.10: 茜が丘複合施設イベント「みらフェス」 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.10</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">茜が丘複合施設イベント「みらフェス」サイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 茜が丘複合施設イベント「みらフェス」サイエンスショー</p>
+                <p><strong>【開催場所】</strong> 兵庫県西脇市</p>
+            </div>
+        </details>
+
+        <!-- 2025.09: 下水道の日フェスティバル2025 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.09</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">下水道の日フェスティバル2025 のりひなサイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 下水道の日フェスティバル2025 のりひなサイエンスショー</p>
+                <p><strong>【主催】</strong> 東京都虹の下水道館</p>
+            </div>
+        </details>
+
+        <!-- 2025.08: 夏休み自由研究ワークショップ（オリナス錦糸町） -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">夏休み自由研究ワークショップ｜オリジナルプラネタリウムを作ろう</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 夏休み自由研究ワークショップ｜オリジナルプラネタリウムを作ろう</p>
+                <p><strong>【主催】</strong> オリナス錦糸町</p>
+            </div>
+        </details>
+
+        <!-- 2025.08: 大阪・関西万博 EXPOサイエンスショー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">大阪・関西万博 EXPOサイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 大阪・関西万博 EXPOサイエンスショー</p>
+                <p><strong>【詳細】</strong> 大阪・関西万博 EXPOメッセ「WASSE」世界青少年発明工夫展2025 ダイキンブース内</p>
+            </div>
+        </details>
+
+        <!-- 2025.08: 夏休み 親子自由研究教室 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.08</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">夏休み 親子自由研究教室</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 夏休み 親子自由研究教室</p>
+                <p><strong>【主催】</strong> 九州電力</p>
+            </div>
+        </details>
+
+        <!-- 2025.07: おもしろ科学館2025 in ほろのべサイエンスキングダム -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.07</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">おもしろ科学館2025 in ほろのべサイエンスキングダム</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> おもしろ科学館2025 in ほろのべサイエンスキングダム</p>
+                <p><strong>【主催】</strong> 経済産業省北海道</p>
+            </div>
+        </details>
+
+        <!-- 2025.07: 再生可能エネルギーや地球温暖化がわかるサイエンスショー -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.07</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">再生可能エネルギーや地球温暖化がわかるサイエンスショー</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> 再生可能エネルギーや地球温暖化がわかるサイエンスショー</p>
+                <p><strong>【主催】</strong> 福島県環境創造センター</p>
+            </div>
+        </details>
+
+        <!-- 2025.03: ふくしま再エネファミリーラボ2025 -->
+        <details class="info-item">
+            <summary class="info-header">
+                <div class="info-meta">
+                    <span class="info-date">2025.03</span>
+                    <span class="info-tag info-tag-orange">SCIENCE</span>
+                </div>
+                <p class="info-title">「ふくしま再エネファミリーラボ2025」出演</p>
+                <span class="toggle-icon">＋</span>
+            </summary>
+            <div class="info-content">
+                <p><strong>【イベント名】</strong> ふくしま再エネファミリーラボ2025</p>
+                <p><strong>【主催】</strong> 福島県エネルギー課</p>
+            </div>
+        </details>
+    </div>
+</section>
+    <!-- BIOGRAPHY 簡易セクション -->
+    <section id="about">
+        <h2 class="section-title" data-bg="BIOGRAPHY">BIOGRAPHY</h2>
+        <div class="about-content">
+            <img src="photo1.jpg" alt="向ひなた" class="about-img">
+            <div class="about-text">
+                <h3>向 ひなた</h3>
+                <div class="sub-name">HINATA MUKAI</div>
+                <p>福井県出身。俳優、サイエンスショープレゼンターとして全国で活動中。理系バックグラウンド（化学修士）を活かした教育的な科学パフォーマンスや、映画・映像作品への出演など多方面で展開しています。</p>
+                <a class="detail-btn bioOpenTrigger">詳しいプロフィールを見る</a>
+            </div>
+        </div>
+    </section>
+
+   <!-- MEDIA セクション -->
+<section id="media" class="media-section-art">
+  
+  <!-- 左側：ダイナミックにデザインされたタイトルとMOREボタン -->
+  <div class="media-hero-title">
+    <span class="sub-label">- LATEST ARCHIVES -</span>
+    <h2 class="huge-media-text">MEDIA</h2>
+    <a href="media.html" class="art-more-btn">
+      <span>MORE</span>
+      <span class="arrow">+</span>
+    </a>
+  </div>
+
+  <!-- 右側：オレンジ系バッジの最新情報リスト -->
+  <div class="media-art-list">
+    <div class="media-item">
+      <span class="media-badge movie">MOVIE</span>
+      <span class="media-date">2026.01.27(火)</span>
+      <span class="media-text">東宝「ブルーロック」</span>
+    </div>
+    <div class="media-item">
+      <span class="media-badge tv">TV</span>
+      <span class="media-date">2025.10.16(木)</span>
+      <span class="media-text">MBS「死ぬまでバズってろ！！」</span>
+    </div>
+    <div class="media-item">
+      <span class="media-badge movie">MOVIE</span>
+      <span class="media-date">2025.09.05(金)</span>
+      <span class="media-text">ワーナーブラザーズ「カラダ探し THE LAST NIGHT」</span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- Photos セクション -->
+<section id="photos" class="photo-section">
+    <!-- ▼ ラッパーで囲み、背景用の文字を追加 ▼ -->
+    <div class="section-title-wrapper">
+        <span class="bg-title">PHOTOS</span>
+        <h2 class="section-title">Photos</h2>
+    </div>
+
+        <!-- 写真を並べるグリッド -->
+        <div class="photos-grid">
+<div class="photo-item"><img src="photo41.jpg" alt="photo41"></div>
+   <div class="photo-item"><img src="photo8.jpg" alt="photo8"></div>
+            <div class="photo-item"><img src="photo1.jpg" alt="photo1"></div>
+            <div class="photo-item"><img src="photo2.jpg" alt="photo2"></div>
+            <div class="photo-item"><img src="photo3.jpg" alt="photo3"></div>
+            <div class="photo-item"><img src="photo4.jpg" alt="photo4"></div>
+            <div class="photo-item"><img src="photo5.jpg" alt="photo5"></div>
+            <div class="photo-item"><img src="photo6.jpg" alt="photo6"></div>
+            <div class="photo-item"><img src="photo7.jpg" alt="photo7"></div>
+<div class="photo-item"><img src="photo9.jpg" alt="photo9"></div>
+<div class="photo-item"><img src="photo10.jpg" alt="photo10"></div>
+<div class="photo-item"><img src="photo11.jpg" alt="photo11"></div>
+<div class="photo-item"><img src="photo12.jpg" alt="photo12"></div>
+<div class="photo-item"><img src="photo13.jpg" alt="photo13"></div>
+<div class="photo-item"><img src="photo14.jpg" alt="photo14"></div>
+<div class="photo-item"><img src="photo15.jpg" alt="photo15"></div>
+<div class="photo-item"><img src="photo17.jpg" alt="photo17"></div>
+<div class="photo-item"><img src="photo18.jpg" alt="photo18"></div>
+<div class="photo-item"><img src="photo19.jpg" alt="photo19"></div>
+<div class="photo-item"><img src="photo20.jpg" alt="photo20"></div>
+<div class="photo-item"><img src="photo21.jpg" alt="photo21"></div>
+<div class="photo-item"><img src="photo22.jpg" alt="photo22"></div>
+<div class="photo-item"><img src="photo23.jpg" alt="photo23"></div>
+<div class="photo-item"><img src="photo24.jpg" alt="photo24"></div>
+<div class="photo-item"><img src="photo25.jpg" alt="photo25"></div>
+<div class="photo-item"><img src="photo31.jpg" alt="photo31"></div>
+<div class="photo-item"><img src="photo33.jpg" alt="photo33"></div>
+<div class="photo-item"><img src="photo34.jpg" alt="photo34"></div>
+<div class="photo-item"><img src="photo35.jpg" alt="photo35"></div>
+<div class="photo-item"><img src="photo38.jpg" alt="photo38"></div>
+<div class="photo-item"><img src="photo39.jpg" alt="photo39"></div>
+<div class="photo-item"><img src="photo42.jpg" alt="photo42"></div>
+<div class="photo-item"><img src="photo16.jpg" alt="photo16"></div>
+        </div>
+    </div>
+</section>
+        </div>
+    </section> 
+<!-- VIDEO セクション -->
+<section id="video" class="video-section">
+    <!-- ▼ ラッパーで囲み、背景用の文字を追加 ▼ -->
+    <div class="section-title-wrapper">
+        <span class="bg-title">VIDEO</span>
+        <h2 class="section-title">VIDEO</h2>
+    </div>
+        
+ 
+
+        <!-- 3カラム（左・中央・右）で完全に中央揃えにする行 -->
+        <div class="video-content-row">
+            
+            <!-- ① 左側のスペース（VIDEO文字の幅に合わせるためのダミー、または空要素） -->
+            <div class="video-side-spacer left-spacer"></div>
+
+            <!-- ② 中央のYouTube動画2つ -->
+            <div class="video-items-preview">
+                <!-- 動画1 -->
+                <div class="video-thumbnail-card">
+                    <a href="https://youtu.be/aOLBXEz4nbw?si=Qrz2asR0Q25fWZqN" target="_blank" class="video-preview-link">
+                        <div class="preview-thumb-wrap">
+                            <img src="https://img.youtube.com/vi/aOLBXEz4nbw/hqdefault.jpg" alt="映画「音の雫」">
+                            <div class="preview-play-icon">▶</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 動画2 -->
+                <div class="video-thumbnail-card">
+                    <a href="https://youtu.be/Z489PpIpykw?si=YdWMKaVW2Bmtvk40" target="_blank" class="video-preview-link">
+                        <div class="preview-thumb-wrap">
+                            <img src="https://img.youtube.com/vi/Z489PpIpykw/hqdefault.jpg" alt="特許庁IPBASE">
+                            <div class="preview-play-icon">▶</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ③ 右端の「+ MORE」ボタン -->
+            <div class="video-more-area">
+                <a href="video.html" class="more-button">
+                    <span class="plus-icon">+</span>
+                    <span class="more-text">MORE</span>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>   
+
+<!-- CONTACTセクション -->
+<section id="contact" style="display: block !important; visibility: visible !important; opacity: 1 !important; position: relative !important; width: 100% !important; padding: 80px 20px; background-color: #fafafa; text-align: center; z-index: 9999;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        
+        <!-- タイトル -->
+        <h2 style="color: #222; font-size: 2rem; letter-spacing: 2px; margin-bottom: 25px; font-weight: 400;">
+            Contact
+        </h2>
+        
+        <!-- 説明文 -->
+        <p style="color: #333; font-size: 1rem; margin-bottom: 30px; line-height: 1.6;">
+            お仕事のご依頼・お問い合わせは、下記メールアドレスまでご連絡ください。
+        </p>
+        
+        <!-- メールアドレスの黒いボタン -->
+        <div style="margin-bottom: 35px;">
+            <a href="mailto:mukai.hinata0708@gmail.com" style="display: inline-block; background-color: #111; color: #fff; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-size: 1.1rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                mukai.hinata0708@gmail.com
+            </a>
+        </div>
+        
+        <!-- 下部のInstagram案内 -->
+        <p style="color: #333; font-size: 1rem;">
+            Instagram DM : <a href="https://www.instagram.com/mukai_hinata78" target="_blank" style="color: #333; text-decoration: underline;">@mukai_hinata78</a>
+        </p>
+        
+    </div>
+</section>
+
+<!-- フッター -->
+    <footer>
+        <p>&copy; 向ひなた OFFICIAL SITE All Rights Reserved.</p>
+    </footer>
+
+    <!-- BIOGRAPHY モーダルウィンドウ -->
+    <div class="bio-modal" id="bioModal">
+        <div class="bio-modal-content">
+            <button class="bio-close-btn" id="bioCloseBtn">&times;</button>
+            <div class="bio-header-area">
+                <img src="photo1.jpg" alt="向ひなた" class="bio-avatar">
+                <div class="bio-intro">
+                    <h2>向 ひなた</h2>
+                    <div class="en-name">HINATA MUKAI</div>
+                    <dl class="bio-specs">
+                        <!-- BIOGRAPHY セクション -->
+<section id="biography" class="bio-section">
+    <div class="bio-container">
+      <!-- プロフィール基本情報・経歴カード -->
+        <div class="bio-profile-card">
+            <div class="bio-main-info">
+                <div class="bio-specs">
+                    <dl>
+                        <div class="bio-row"><dt>生年月日</dt><dd>1997年7月8日</dd></div>
+                        <div class="bio-row"><dt>サイズ</dt><dd>T: 165cm / B: 84 / W: 64 / H: 88 / S: 24.5cm</dd></div>
+                        <div class="bio-row"><dt>出身地</dt><dd>福井県</dd></div>
+                        <div class="bio-row"><dt>学歴</dt><dd>首都大学東京 都市環境学部 都市環境学科 分子応用科学コース 卒業<br>東京都立大学大学院 環境応用科学研究科 環境応用化学域 卒業</dd></div>
+                        <div class="bio-row"><dt>特技</dt><dd>バドミントン、ピアノ</dd></div>
+                        <div class="bio-row"><dt>趣味</dt><dd>温泉銭湯巡り、海外旅行、サメ映画鑑賞</dd></div>
+                        <div class="bio-row"><dt>資格</dt><dd>普通自動車免許、温泉ソムリエ</dd></div>
+                    </dl>
+                </div>
+            </div>
+            
+            <div class="bio-message">
+                <p>私は大学、大学院の計6年間、化学を学び、リチウムイオン電池の研究を行ってきました。大学院卒業後、一度就職をしまして、2年前に退職し俳優の道を選びました。お芝居へのスタートは遅いですが、大学での研究で得た、地道に根気強く取り組む精神を生かしたお芝居したいと思います。現在は、俳優業と並行して「のりのり&ひなひな」としてサイエンスショーを行っております。主に小学生を対象としたイベントで、化学にまつわる実験をお芝居と掛け合わせて行っています。大阪関西万博、北海道、鹿児島等、全国各地で行っております。</p>
+            </div>
+        </div>
+
+        <!-- 経歴・出演歴リスト（アコーディオン形式 or リスト形式） -->
+        <div class="bio-history-wrapper">
+            
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■サイエンスショー</h3>
+                <ul class="bio-list">
+                    <li><span class="date">2026.3</span>「ふくしま再エネファミリーラボ2026」（主催：福島県エネルギー課）</li>
+                    <li><span class="date">2026.2</span>Ｑでんみらいスクール★九電科学実験イベント／サイエンスショー（主催：九州電力）</li>
+                    <li><span class="date">2025.12</span>カーボンニュートラルフェア in かごしま／サイエンスショー（鹿児島県鹿児島市）</li>
+                    <li><span class="date">2025.11</span>かごしままるごとフェス ワークショップ／サイエンスショー（鹿児島県南さつま市）</li>
+                    <li><span class="date">2025.10</span>ふくしま水素エネルギー サイエンスショー</li>
+                    <li><span class="date">2025.10</span>ボートレース若松 サイエンスショー(福岡県北九州市)</li>
+                    <li><span class="date">2025.10</span>茜が丘複合施設イベント「みらフェス」サイエンスショー：兵庫県(西脇市)</li>
+                    <li><span class="date">2025.09</span>下水道の日フェスティバル2025 のりひなサイエンスショー(主催：東京都虹の下水道館)</li>
+                    <li><span class="date">2025.08</span>夏休み自由研究ワークショップ｜オリジナルプラネタリウムを作ろう（主催：オリナス錦糸町）</li>
+                    <li><span class="date">2025.08</span>大阪・関西万博 EXPOサイエンスショー| 大阪・関西万博 EXPOメッセ「WASSE」 世界青少年発明工夫展2025ダイキンブース内</li>
+                    <li><span class="date">2025.08</span>夏休み 親子自由研究教室（主催：九州電力）</li>
+                    <li><span class="date">2025.07</span>おもしろ科学館2025 in ほろのべサイエンスキングダム(主催：経済産業省北海道)</li>
+                    <li><span class="date">2025.07</span>再生可能エネルギーや地球温暖化がわかるサイエンスショー(主催：福島県環境創造センター)</li>
+                    <li><span class="date">2025.03</span>「ふくしま再エネファミリーラボ2025」(主催：福島県エネルギー課)</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■ドラマ・映画</h3>
+                <ul class="bio-list">
+                    <li>映画「音の雫」神崎夢香役</li>
+                    <li>短編「キミと私の約束」松永楓役</li>
+                    <li>The 48 Hour Film Project『来客は梅雨』主演</li>
+                    <li>TBS「この初恋はフィクションです」</li>
+                    <li>WOWOW 「TOKYO VICE」</li>
+                    <li>中居正広の金曜日のスマイルたちへ 再現VTR</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■MV</h3>
+                <ul class="bio-list">
+                    <li>カンクロウさん「日常」ミュージックビデオ</li>
+                    <li>Organic Callさん「Hello My Friend」ミュージックビデオ</li>
+                    <li>郷ひろみ「できるだけ、」ミュージックビデオ</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■CM</h3>
+                <ul class="bio-list">
+                    <li>サントリー「金麦のオフ」</li>
+                    <li>GiGO</li>
+                    <li>荒野行動</li>
+                    <li>アクサ生命</li>
+                    <li>東京消防庁</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■舞台</h3>
+                <ul class="bio-list">
+                    <li>三栄町×ACT舞台「ドライブ」恵役</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■ラジオ</h3>
+                <ul class="bio-list">
+                    <li>さくらFM ゲスト出演（8月17日回）</li>
+                    <li>東京FMラジオ「お台場レインボーステーション」</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">■YouTube</h3>
+                <ul class="bio-list">
+                    <li>特許庁 IP BASE リポーター</li>
+                    <li>芸術応援バラエティー「ラフらぼ」メインMC</li>
+                    <li>ダイエー「トップバリュ女子会」</li>
+                    <li>EvisJap 大型企画「スコラージャパン」</li>
+                    <li>ココから恋しよう 第2話</li>
+                </ul>
+            </div>
+
+            <div class="bio-category">
+                <h3 class="bio-cat-title">【その他】</h3>
+                <ul class="bio-list">
+                    <li>東京オリンピック福井県 聖火ランナー</li>
+                    <li>ゆかたクイーンコンテスト スタイリング賞</li>
+                    <li>お台場シーサイドイメージガール就任</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- JavaScript（メニュー・モーダル・タブ制御） -->
+    <script>
+        // スマホ用メニュー開閉
+        const menuOpenBtn = document.getElementById('menuOpenBtn');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
+        const fullMenu = document.getElementById('fullMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        menuOpenBtn.addEventListener('click', () => fullMenu.classList.add('active'));
+        menuCloseBtn.addEventListener('click', () => fullMenu.classList.remove('active'));
+        menuLinks.forEach(link => link.addEventListener('click', () => fullMenu.classList.remove('active')));
+
+        // BIOGRAPHY モーダル開閉
+        const bioModal = document.getElementById('bioModal');
+        const bioCloseBtn = document.getElementById('bioCloseBtn');
+        const bioOpenTriggers = document.querySelectorAll('.bioOpenTrigger');
+
+        bioOpenTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                bioModal.classList.add('active');
+                fullMenu.classList.remove('active');
+            });
+        });
+        bioCloseBtn.addEventListener('click', () => bioModal.classList.remove('active'));
+        bioModal.addEventListener('click', (e) => {
+            if (e.target === bioModal) bioModal.classList.remove('active');
+        });
+// MEDIA タブ切り替え（ブロック単位での制御）
+const tabBtns = document.querySelectorAll('.tab-btn');
+const genreBlocks = document.querySelectorAll('.works-genre-block');
+
+function switchGenre(targetGenre) {
+    genreBlocks.forEach(block => {
+        const blockGenre = block.getAttribute('data-genre');
+        if (targetGenre === 'ALL' || blockGenre === targetGenre) {
+            block.classList.add('is-show');
+        } else {
+            block.classList.remove('is-show');
+        }
+    });
+}
+
+// 最初にページを開いたときは「ALL」を表示
+switchGenre('ALL');
+
+// タブをクリックしたときの処理
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // ボタンのアクティブ状態を切り替え
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // クリックされたタブのジャンルを取得して表示を切り替え
+        const selectedGenre = btn.getAttribute('data-genre');
+        switchGenre(selectedGenre);
+    });
+});
+    </script>
+<!-- いま書かれているHTMLのコンテンツやセクションなど -->
+
+    <!-- 下記のスクリプトを </body> の直前に追加する -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const genreBlocks = document.querySelectorAll('.works-genre-block');
+
+            function switchGenre(targetGenre) {
+                genreBlocks.forEach(block => {
+                    const blockGenre = block.getAttribute('data-genre');
+                    if (targetGenre === 'ALL' || blockGenre === targetGenre) {
+                        block.classList.add('is-show');
+                    } else {
+                        block.classList.remove('is-show');
+                    }
+                });
+            }
+
+            // 最初にページを開いたときは「ALL」を表示
+            switchGenre('ALL');
+
+            // タブをクリックしたときの処理
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // ボタンのアクティブ状態を切り替え
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // クリックされたタブのジャンルを取得して表示を切り替え
+                    const selectedGenre = btn.getAlttribute('data-genre');
+                    switchGenre(selectedGenre);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
