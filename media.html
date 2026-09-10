@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>MEDIA</title>
+    <style>
+        /* 全体のベーススタイル */
+        #media {
+            padding: 40px 20px;
+            font-family: "Times New Roman", "Yu Mincho", "Hiragio Mincho ProN", serif;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #333;
+        }
+/* ▼ 追加：タイトルを重ねるための親コンテナ ▼ */
+    .section-title-wrapper {
+        position: relative;
+        height: 70px; /* 背景の文字がしっかり収まる高さ */
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    /* ▼ 追加：背景にうっすらと表示される大きな文字 ▼ */
+    .bg-title {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 5rem; /* お好みに合わせて調整してください */
+        letter-spacing: 4px;
+        color: rgba(181, 101, 29, 0.08); /* うっすら見せるための薄い色 */
+        font-weight: bold;
+        z-index: 1;
+        user-select: none;
+        pointer-events: none;
+        white-space: nowrap;
+        font-family: "Times New Roman", serif;
+    }
+
+        /* 画像のような「MEDIA」の大きな見出し */
+        .section-title {
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            color: #b5651d;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        /* ジャンル切り替えタブ（ボタングループ） */
+        .genre-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background-color: #f7f7f7;
+            border: 1px solid #dcdcdc;
+            color: #333;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .tab-btn:hover {
+            border-color: #b5651d;
+        }
+
+        /* 選択中（Active）のタブボタンの色 */
+        .tab-btn.active {
+            background-color: #d97724;
+            color: #fff;
+            border-color: #d97724;
+        }
+
+        /* ジャンルごとのブロック */
+        .works-genre-block {
+            margin-bottom: 40px;
+        }
+
+        /* ブロックの見出し（ドラマ・映画 など） */
+        .genre-heading {
+            font-size: 1.3rem;
+            font-weight: normal;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        /* リストを囲む薄い背景のボックス（左側のオレンジの縦線アクセント付き） */
+        .works-box {
+            background-color: #faf8f5;
+            border: 1px solid #eae5df;
+            border-left: 4px solid #d97724;
+            padding: 20px 24px;
+            border-radius: 2px;
+        }
+
+        /* リストアイテム */
+        .works-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .work-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #eee5de;
+            padding-bottom: 14px;
+        }
+
+        .work-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .work-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        /* 各項目のオレンジタグ（MOVIE, TV 等） */
+        .genre-tag {
+            display: inline-block;
+            background-color: #d97724;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 5px 12px;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            text-align: center;
+            min-width: 75px;
+        }
+
+        .work-date {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* タイトル・リンクのスタイル */
+        .work-content {
+            font-size: 1rem;
+        }
+
+        .work-title-link {
+            color: #b5651d;
+            text-decoration: none;
+        }
+
+        .work-title-link:hover {
+            text-decoration: underline;
+        }
+
+        .work-text {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<section id="media">
+    <!-- ▼ ラッパーで囲み、背景用の文字を追加 ▼ -->
+    <div class="section-title-wrapper">
+        <span class="bg-title">MEDIA</span>
+        <h2 class="section-title">MEDIA</h2>
+    </div>
+        
+        <!-- ジャンル切り替えボタン -->
+        <div class="genre-tabs">
+            <button class="tab-btn active" data-genre="ALL">ALL</button>
+            <button class="tab-btn" data-genre="Science">SCIENCE</button>
+            <button class="tab-btn" data-genre="MOVIE">MOVIE</button>
+            <button class="tab-btn" data-genre="TV">TV</button>
+            <button class="tab-btn" data-genre="MV">MV</button>
+            <button class="tab-btn" data-genre="CM">CM</button>
+            <button class="tab-btn" data-genre="YOUTUBE">YOUTUBE</button>
+            <button class="tab-btn" data-genre="STAGE">STAGE</button>
+            <button class="tab-btn" data-genre="RADIO">RADIO</button>
+            <button class="tab-btn" data-genre="OTHER">OTHER</button>
+        </div>
+
+        <div class="works-list-container">
+            
+            <!-- ドラマ・映画 (MOVIE) -->
+            <div class="works-genre-block" data-genre="MOVIE">
+                <h3 class="genre-heading">ドラマ・映画</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DTq9n1jEmwK/?igsh=NXRoZG9yNmxybm5n" target="_blank" class="work-title-link">長編「音の雫」神崎夢香 役</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/gz_Mtqdujb4?si=tlVtGayfIhPqzLNl" target="_blank" class="work-title-link">短編「キミと私の約束」主演：松永楓 役（神戸三宮シアターETTO 観客賞・ベストチーム賞受賞）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/Cgg8ZjeJCYN/?utm_source=ig_web_button_share_sheet" target="_blank" class="work-title-link">The 48 Hour Film Project「来客は梅雨」主演</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/CU2NzFmFsGF/?utm_source=ig_web_button_share_sheet" target="_blank" class="work-title-link">TBSテレビ「この初恋はフィクションです」生徒 役</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content"><span class="work-text">TOKYO VOICE 受付役</span></div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content"><span class="work-text">WOWOW 殺意の道程 キャバ嬢役</span></div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content"><span class="work-text">Memories 看護師たちの物語 看護師役</span></div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MOVIE</span></div>
+                            <div class="work-content"><span class="work-text">妖怪シェアハウス 生霊役</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- テレビ (TV) -->
+            <div class="works-genre-block" data-genre="TV">
+                <h3 class="genre-heading">テレビ</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">TV</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/CkSzyfcp4Ov/?utm_source=ig_web_button_share_sheet" target="_blank" class="work-title-link">中居正広の金曜日のスマイルたちへ 再現VTR 編集者役</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">TV</span></div>
+                            <div class="work-content"><span class="work-text">テレビ東京「ソレダメ!あなたの常識は非常識?」再現VTR</span></div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">TV</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/CAcpgEPnQ6b/?igsh=MWR2bTJ0OG8ydTVheA==" target="_blank" class="work-title-link">らいこれTV ゲスト出演</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- サイエンスショー (Science) -->
+            <div class="works-genre-block" data-genre="Science">
+                <h3 class="genre-heading">サイエンスショー</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2026.02</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DUX4figD-io/?igsh=NGw4NzZia3N6Z3l4" target="_blank" class="work-title-link">Qでんみらいスクール★九電科学実験イベント／サイエンスショー（主催：九州電力）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.12</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DSzcRuZD5Xh/?igsh=MTEzeHl6ZmwxOWhrdQ==" target="_blank" class="work-title-link">カーボンニュートラルフェア in かごしま／サイエンスショー（鹿児島県鹿児島市）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.11</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DRcGzWMD7sV/?igsh=aW9yejlrNm50aWs=" target="_blank" class="work-title-link">かごしままるごとフェス ワークショップ／サイエンスショー（鹿児島県南さつま市）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.10</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DQGrgJrj2ao/?igsh=eTJ0aWJpZTdzcWM5" target="_blank" class="work-title-link">ふくしま水素エネルギー サイエンスショー（主催：福島県産業人材育成課）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.10</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DQY5dZ9D7VQ/?igsh=MXRqczM0cHN3NzQyaQ==" target="_blank" class="work-title-link">ボートレース若松 サイエンスショー（福岡県北九州市）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.10</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DPoAwVGDxtE/?igsh=MXQxdnlsaXBvMndueg==" target="_blank" class="work-title-link">茜が丘複合施設イベント「みらフェス」 サイエンスショー（主催：兵庫県西脇市）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.09</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DOvhQNmD6eF/?igsh=cHJyN3hxa2I1YXY4" target="_blank" class="work-title-link">下水道の日フェスティバル2025｜のりのり＆ひなひなサイエンスショー（主催：東京都虹の下水道館）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.08</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DN-XdswDyie/?igsh=cTcxbGczaTFkamtr" target="_blank" class="work-title-link">夏休み自由研究ワークショップ｜オリジナルプラネタリウムを作ろう（主催：オリナス錦糸町）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.08</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DNVUN1tTOIn/?igsh=MXVnZGRjazN4dWE3Yg==" target="_blank" class="work-title-link">大阪・関西万博 EXPOサイエンスショー｜ダイキンブース内</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.08</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DNLHcjXzHPp/?igsh=dDk4cW5lZWNqdWg5" target="_blank" class="work-title-link">夏休み 親子自由研究教室（主催：九州電力）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.07</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DMxUxOHT93-/?igsh=dG9jNGJxczlxbHM0" target="_blank" class="work-title-link">おもしろ科学館2025inほろのべ｜サイエンスキングダム</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.07</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DMWrpV-TrNu/?igsh=b3MyenM0dnRsOGJ6" target="_blank" class="work-title-link">再生可能エネルギーや地球温暖化がわかるサイエンスショー！（主催：福島県環境創造センター）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">SCIENCE</span><span class="work-date">2025.03</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/DHf8KSJzGCW/?igsh=MXN6NHExNGFlaTdzdQ==" target="_blank" class="work-title-link">「ふくしま再エネファミリーラボ2025」（主催：福島県エネルギー課）</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CM (CM) -->
+            <div class="works-genre-block" data-genre="CM">
+                <h3 class="genre-heading">CM</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">CM</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/C7BhA29LEJv/?utm_source=ig_web_button_share_sheet" target="_blank" class="work-title-link">サントリー「金麦のオフ」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">CM</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/C5N6vWXPiG5/?utm_source=ig_web_button_share_sheet" target="_blank" class="work-title-link">GiGO</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">CM</span></div>
+                            <div class="work-content">
+                                <a href="https://x.com/GAME_KNIVES_OUT/status/1417683880086147074?s=20" target="_blank" class="work-title-link">荒野行動</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">CM</span></div>
+                            <div class="work-content"><span class="work-text">LINEヤフー</span></div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">CM</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/CbeyZapL_Dj/?utm_source=ig_web_button_share_sheet" target="_blank" class="work-title-link">アクサ生命</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">CM</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/RBNRjsbSXTk?si=gu3I_hg9s4YdQfm7" target="_blank" class="work-title-link">アラジンEC</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ミュージックビデオ (MV) -->
+            <div class="works-genre-block" data-genre="MV">
+                <h3 class="genre-heading">ミュージックビデオ (MV)</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MV</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/zOJSi8NVQMM?si=xYsyFbH50C7YXM8E" target="_blank" class="work-title-link">郷ひろみ「できるだけ、」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MV</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/y1mgIeZ-7FA?si=OdPTQvFhFHL3EOhS" target="_blank" class="work-title-link">カンクロウ「日常」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MV</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/ZA4MhEuHi2s?si=Bbm_mT8-bjiJWU3l" target="_blank" class="work-title-link">Organic Call「Hello My Friend」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">MV</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/4y6I7VYAWxQ?si=a_Li_Z8CKiBLKE2u" target="_blank" class="work-title-link">アイリフドーパ「Traffic jam」</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube 出演 (YOUTUBE) -->
+            <div class="works-genre-block" data-genre="YOUTUBE">
+                <h3 class="genre-heading">YouTube 出演</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/Z489PpIpykw?si=NrjA2n-HTRG--AR_" target="_blank" class="work-title-link">特許庁 IP BASE</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/yhJ_7dRvCWE?si=HDYO_15sH1zKs60H" target="_blank" class="work-title-link">「ラフらぼ」メインMC</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/ua7Hej1vPtw?si=uXbL1Jpl1e1MLUfk" target="_blank" class="work-title-link">ダイエー「トップバリュ女子会」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/qnaBL9hnaNo?si=kqB2t_aUW8deNKuH" target="_blank" class="work-title-link">EvisJap 大型企画「スコラージャパン第1話」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/Uvgl7sLlE6M?si=DjD36qJyrcoMMDQ8" target="_blank" class="work-title-link">EvisJap 大型企画「スコラージャパン第2話」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/QMFX9clAWX0?si=1_mEaFKbz_qJGuvb" target="_blank" class="work-title-link">EvisJap 大型企画「スコラージャパン第3話」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/QVhJV7v4zz8?si=kCerM9AQdKBm7dR5" target="_blank" class="work-title-link">EvisJap 大型企画「スコラージャパン最終話」</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">YOUTUBE</span></div>
+                            <div class="work-content">
+                                <a href="https://youtu.be/mVl223mUQ_U?si=nhdClgcqy8StItr5" target="_blank" class="work-title-link">ココから恋しよう 第2話</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 舞台 (STAGE) -->
+            <div class="works-genre-block" data-genre="STAGE">
+                <h3 class="genre-heading">舞台</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">STAGE</span></div>
+                            <div class="work-content">
+                                <a href="https://x.com/mukai_hinata78/status/1436289743751241741?s=20" target="_blank" class="work-title-link">三栄町×ACT舞台「ドライブ」恵 役</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ラジオ (RADIO) -->
+            <div class="works-genre-block" data-genre="RADIO">
+                <h3 class="genre-heading">ラジオ</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">RADIO</span></div>
+                            <div class="work-content">
+                                <a href="#" target="_blank" class="work-title-link">さくらFM ゲスト出演（8月17日回）</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">RADIO</span></div>
+                            <div class="work-content"><span class="work-text">東京FMラジオ「お台場レインボーステーション」</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- その他活動・受賞歴 (OTHER) -->
+            <div class="works-genre-block" data-genre="OTHER">
+                <h3 class="genre-heading">その他活動・受賞歴</h3>
+                <div class="works-box">
+                    <div class="works-list">
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">OTHER</span></div>
+                            <div class="work-content">
+                                <a href="https://x.com/mukai_hinata78/status/1399334511205179399?s=20" target="_blank" class="work-title-link">東京オリンピック福井県 聖火ランナー</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">OTHER</span></div>
+                            <div class="work-content">
+                                <a href="https://www.instagram.com/p/CERQ7DwnsVr/?img_index=3&igsh=Y2JuYnR4NWJiMnBj" target="_blank" class="work-title-link">ゆかたクイーンコンテスト スタイリング賞</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">OTHER</span></div>
+                            <div class="work-content"><span class="work-text">お台場シーサイドイメージガール 第17期</span></div>
+                        </div>
+                        <div class="work-item">
+                            <div class="work-header"><span class="genre-tag">OTHER</span></div>
+                            <div class="work-content"><span class="work-text">ミスオブサークル ファイナリスト</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ボタンクリックでジャンルを切り替えるJavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".tab-btn");
+        const blocks = document.querySelectorAll(".works-genre-block");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                // ボタンのアクティブ状態を切り替え
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+
+                const selectedGenre = this.getAttribute("data-genre");
+
+                // 該当するジャンルのブロックのみ表示・非表示を切り替え
+                blocks.forEach(block => {
+                    if (selectedGenre === "ALL" || block.getAttribute("data-genre") === selectedGenre) {
+                        block.style.display = "block";
+                    } else {
+                        block.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
+     
