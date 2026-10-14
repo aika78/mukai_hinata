@@ -286,6 +286,29 @@
         margin-left: 0 !important;
         margin-right: 0 !important;
   　　  }
+    
+    /* --- スマホのときだけMEDIAセクション全体を縦並びにする --- */
+    .media-container, #media > div {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 20px !important;
+ 　　   }
+
+    /* スマホでは左側エリア（ロゴ等）も幅いっぱいに広げる */
+    .media-sidebar, .media-left, .section-title-area {
+        width: 100% !important;
+        max-width: 100% !important;
+ 　　   }
+
+    /* スマホではリストエリアも幅いっぱいに広げる */
+    .works-list-container, .media-list {
+        width: 100% !important;
+        max-width: 100% !important;
+ 　　   }
+　　}
 }
 
         /* --- BIOGRAPHY モーダル（ポップアップ詳細画面） --- */
