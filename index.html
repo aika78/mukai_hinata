@@ -252,7 +252,7 @@
         margin: 0 !important;
         padding: 0 !important;
         box-sizing: border-box !important;
-    }
+   　　 }
 
     /* 2. MEDIAセクション全体の幅とパディング調整 */
     .media-section, #media {
@@ -262,7 +262,7 @@
         padding-right: 15px !important;
         box-sizing: border-box !important;
         overflow-x: hidden !important;
-    }
+  　　  }
 
     /* 3. リストコンテナのはみ出しを完全に防ぐ */
     .works-list-container {
@@ -273,7 +273,7 @@
         box-sizing: border-box !important;
         margin: 0 !important;
         padding: 0 !important;
-    }
+  　　  }
 
     /* 4. 個別のアイテム（カード）の幅をスマホの画面幅にピッタリ合わせる */
     .work-item {
@@ -285,87 +285,7 @@
         box-sizing: border-box !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
-    }
-        /* --- 追加・修正：MEDIAセクション全体を縦並び（上から下へ）にする --- */
-    .media-section, #media, .media-container {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-
-    /* MEDIAのタイトルやMOREボタン、リストをすべて縦に積む */
-    .media-section > *, #media > *, .media-container > * {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    /* リスト部分を完全に縦1列に並べる */
-    .works-list-container, .media-list {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 個別のリスト項目も縦並びにする */
-    .work-item, .media-item {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        gap: 8px !important;
-    }
-        
-        @media screen and (min-width: 769px) {
-    /* MEDIAセクション全体の大枠を中央寄せにし、最大幅を整える */
-    #media, .media-section {
-        max-width: 1200px !important;
-        margin: 0 auto !important;
-        padding: 100px 10% !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 「左側のロゴ＆MORE」と「右側のリスト」を横並びにするコンテナ */
-    .media-container, #media > div {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: flex-start !important;
-        justify-content: space-between !important;
-        gap: 60px !important;
-        width: 100% !important;
-    }
-
-    /* 左側のエリア（LATEST ARCHIVES, MEDIAロゴ, MOREボタン） */
-    .media-sidebar, .media-left, .section-title-area {
-        flex-shrink: 0 !important;
-        width: 320px !important;
-    }
-
-    /* 右側のリストエリア */
-    .works-list-container, .media-list {
-        flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        width: 100% !important;
-    }
-        /* PC表示のレイアウトがスマホ用に引っ張られて崩れないよう、スマホのときだけ縦並びを強制する */
-    .media-section, #media, .media-container {
-        display: flex !important;
-        flex-direction: column !important;
-    }
+  　　  }
 }
 
         /* --- BIOGRAPHY モーダル（ポップアップ詳細画面） --- */
