@@ -328,6 +328,42 @@
         box-sizing: border-box !important;
         gap: 8px !important;
     }
+        
+        @media screen and (min-width: 769px) {
+    /* MEDIAセクション全体の大枠を中央寄せにし、最大幅を整える */
+    #media, .media-section {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 100px 10% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 「左側のロゴ＆MORE」と「右側のリスト」を横並びにするコンテナ */
+    .media-container, #media > div {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        justify-content: space-between !important;
+        gap: 60px !important;
+        width: 100% !important;
+    }
+
+    /* 左側のエリア（LATEST ARCHIVES, MEDIAロゴ, MOREボタン） */
+    .media-sidebar, .media-left, .section-title-area {
+        flex-shrink: 0 !important;
+        width: 320px !important;
+    }
+
+    /* 右側のリストエリア */
+    .works-list-container, .media-list {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        width: 100% !important;
+    }
+}
+    
         /* PC表示のレイアウトがスマホ用に引っ張られて崩れないよう、スマホのときだけ縦並びを強制する */
     .media-section, #media, .media-container {
         display: flex !important;
