@@ -328,6 +328,11 @@
         box-sizing: border-box !important;
         gap: 8px !important;
     }
+        /* PC表示のレイアウトがスマホ用に引っ張られて崩れないよう、スマホのときだけ縦並びを強制する */
+    .media-section, #media, .media-container {
+        display: flex !important;
+        flex-direction: column !important;
+    }
 }
 
         /* --- BIOGRAPHY モーダル（ポップアップ詳細画面） --- */
